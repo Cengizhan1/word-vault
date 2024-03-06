@@ -4,9 +4,9 @@ import com.cengizhanyavuz.wordvault.dto.request.LoginRequest;
 import com.cengizhanyavuz.wordvault.dto.request.RegisterRequest;
 import com.cengizhanyavuz.wordvault.dto.response.AuthenticationResponse;
 import com.cengizhanyavuz.wordvault.exception.UsernameAlreadyExistsException;
-import com.cengizhanyavuz.wordvault.model.Role;
-import com.cengizhanyavuz.wordvault.model.Token;
-import com.cengizhanyavuz.wordvault.model.User;
+import com.cengizhanyavuz.wordvault.model.user.Role;
+import com.cengizhanyavuz.wordvault.model.user.Token;
+import com.cengizhanyavuz.wordvault.model.user.User;
 import com.cengizhanyavuz.wordvault.repository.TokenRepository;
 import com.cengizhanyavuz.wordvault.repository.UserRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -16,6 +16,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -125,5 +127,10 @@ public class AuthenticationService {
                 new ObjectMapper().writeValue(response.getOutputStream(), authResponse);
             }
         }
+    }
+
+    public User getCurrentUser() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        return (User) authentication.getPrincipal();
     }
 }

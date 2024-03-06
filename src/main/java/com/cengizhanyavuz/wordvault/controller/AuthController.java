@@ -6,7 +6,6 @@ import com.cengizhanyavuz.wordvault.dto.response.AuthenticationResponse;
 import com.cengizhanyavuz.wordvault.service.auth.AuthenticationService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
@@ -16,11 +15,14 @@ import java.io.IOException;
 
 @RestController
 @RequestMapping("/v1/api/auth")
-@RequiredArgsConstructor
 public class AuthController {
 
   private final AuthenticationService service;
   private static final Logger logger = LoggerFactory.getLogger(AuthController.class);
+
+  public AuthController(AuthenticationService service) {
+    this.service = service;
+  }
 
 
   @PostMapping("/register")

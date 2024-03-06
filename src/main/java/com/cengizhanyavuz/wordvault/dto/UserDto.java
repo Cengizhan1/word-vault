@@ -1,7 +1,7 @@
 package com.cengizhanyavuz.wordvault.dto;
 
-import com.cengizhanyavuz.wordvault.model.Gender;
-import com.cengizhanyavuz.wordvault.model.User;
+import com.cengizhanyavuz.wordvault.model.user.Gender;
+import com.cengizhanyavuz.wordvault.model.user.User;
 
 public record UserDto(
         Long id,

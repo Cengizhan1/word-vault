@@ -1,4 +1,4 @@
-package com.cengizhanyavuz.wordvault.model;
+package com.cengizhanyavuz.wordvault.model.user;
 
 import org.springframework.security.core.GrantedAuthority;
 

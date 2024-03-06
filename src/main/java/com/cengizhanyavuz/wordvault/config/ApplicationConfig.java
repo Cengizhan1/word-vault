@@ -1,4 +1,4 @@
-package com.cengizhanyavuz.wordvault.secuirty;
+package com.cengizhanyavuz.wordvault.config;
 
 import com.cengizhanyavuz.wordvault.repository.UserRepository;
 import lombok.RequiredArgsConstructor;

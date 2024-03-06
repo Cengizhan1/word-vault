@@ -1,6 +1,6 @@
 package com.cengizhanyavuz.wordvault.repository;
 
-import com.cengizhanyavuz.wordvault.model.Token;
+import com.cengizhanyavuz.wordvault.model.user.Token;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

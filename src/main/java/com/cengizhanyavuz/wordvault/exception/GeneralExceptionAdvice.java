@@ -42,5 +42,10 @@ public class GeneralExceptionAdvice extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(exception.getMessage(), HttpStatus.CONFLICT);
     }
 
+    @ExceptionHandler(WordNotFoundException.class)
+    public ResponseEntity<?> handle(WordNotFoundException exception) {
+        return new ResponseEntity<>(exception.getMessage(), HttpStatus.NOT_FOUND);
+    }
+
 
 }

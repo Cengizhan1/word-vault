@@ -1,6 +1,6 @@
 package com.cengizhanyavuz.wordvault.repository;
 
-import com.cengizhanyavuz.wordvault.model.User;
+import com.cengizhanyavuz.wordvault.model.user.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
