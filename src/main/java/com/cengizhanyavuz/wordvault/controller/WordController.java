@@ -6,7 +6,6 @@ import com.cengizhanyavuz.wordvault.dto.request.WordUpdateRequest;
 import com.cengizhanyavuz.wordvault.service.WordService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
@@ -26,6 +25,11 @@ public class WordController {
     @GetMapping
     public ResponseEntity<List<WordDto>> getWord(){
         return ResponseEntity.ok(service.getAllWords());
+    }
+
+    @GetMapping("/getWordByUser")
+    public ResponseEntity<List<WordDto>> getWordByUser(){
+        return ResponseEntity.ok(service.getWordByUser());
     }
 
     @GetMapping("/{id}")

@@ -30,6 +30,13 @@ public class WordService {
                 .toList();
     }
 
+    public List<WordDto> getWordByUser() {
+        return wordRepository.findAllByUser(authenticationService.getCurrentUser())
+                .stream()
+                .map(WordDto::convert)
+                .toList();
+    }
+
     public WordDto createWord(WordCreateRequest request) {
         Word word = new Word();
         word.setUser(authenticationService.getCurrentUser());
