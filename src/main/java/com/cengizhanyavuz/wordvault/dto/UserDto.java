@@ -6,6 +6,7 @@ import com.cengizhanyavuz.wordvault.model.User;
 public record UserDto(
         Long id,
         String name,
+        String surname,
         String username,
         Integer age,
         Gender gender,
@@ -16,6 +17,7 @@ public record UserDto(
         return new UserDto(
                 user.getId(),
                 user.getName(),
+                user.getSurname(),
                 user.getUsername(),
                 user.getAge(),
                 user.getGender(),
