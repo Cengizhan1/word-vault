@@ -9,6 +9,8 @@ import com.cengizhanyavuz.wordvault.repository.WordRepository;
 import com.cengizhanyavuz.wordvault.service.auth.AuthenticationService;
 import org.springframework.stereotype.Service;
 
+import static com.cengizhanyavuz.wordvault.constants.PointConstants.*;
+
 import java.util.List;
 
 @Service
@@ -51,6 +53,20 @@ public class WordService {
         word.setIt(request.it());
         word.setAlm(request.alm());
         return WordDto.convert(wordRepository.save(word));
+    }
+
+    public void updateProficiencyLevelOfWord(Long id, Boolean result) {
+        if (result) {
+            updateProficiencyLevelOfWord(id, WORD_POINTS_TO_DECREASED);
+        } else {
+            updateProficiencyLevelOfWord(id, WORD_POINTS_TO_INCREASED);
+        }
+    }
+
+    private void updateProficiencyLevelOfWord(Long id ,int point) {
+        Word word = getWordById(id);
+        word.setProficiencyLevel(word.getProficiencyLevel() + point);
+        wordRepository.save(word);
     }
 
     private Word getWordById(Long id) {
