@@ -8,6 +8,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 
+import java.time.LocalDateTime;
+
 @Data
 @Log4j2
 @NoArgsConstructor
@@ -25,6 +27,7 @@ public class Word {
     private String it;
     private String alm;
     private Integer proficiencyLevel = 100;
+    private LocalDateTime lastAnsweredDate = LocalDateTime.now();
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")

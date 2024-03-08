@@ -7,10 +7,12 @@ import com.cengizhanyavuz.wordvault.exception.WordNotFoundException;
 import com.cengizhanyavuz.wordvault.model.Word;
 import com.cengizhanyavuz.wordvault.repository.WordRepository;
 import com.cengizhanyavuz.wordvault.service.auth.AuthenticationService;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import static com.cengizhanyavuz.wordvault.constants.PointConstants.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -73,5 +75,10 @@ public class WordService {
         return wordRepository.findById(id).orElseThrow(
                 () -> new WordNotFoundException("Word not found with id: " + id)
         );
+    }
+
+    @Scheduled(fixedRate = 24 * 60*30)
+    public void updateProficiencyLevelByLastAnsweredDate() {
+        wordRepository.increasePointsForOldWords(LocalDateTime.now().minusDays(15));
     }
 }
