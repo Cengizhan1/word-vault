@@ -1,5 +1,5 @@
 # Word Vault
-
+latest version of the document -> https://docs.google.com/document/d/1MU2sROrm1WQASzx_I0PfWEEFq4QkEuYleCD0e_2FXnE/edit?usp=sharing
 ## Yabancı Dil Uygulaması
 
 Yabancı dil öğrenirken sıkça karşılaşılan sorunlardan biri, bilinmeyen kelimeleri ve önemli noktaları not almak ve daha sonra bu bilgileri tekrarlamak ve hafızada tutmaktır. Bu uygulama, bilinmeyen kelimeleri ekleyip daha sonra tekrar etmek için otomatik sınavlar oluşturmanıza olanak tanır. Aynı kelimelere doğru cevap verdiğinizde, uygulama bu kelimeleri öğrenildi olarak işaretler ve daha az sormayı hedefler.
