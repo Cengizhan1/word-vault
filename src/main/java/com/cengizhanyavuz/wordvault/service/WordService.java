@@ -24,13 +24,6 @@ public class WordService {
     }
 
     public List<WordDto> getAllWords() {
-        return wordRepository.findAll()
-                .stream()
-                .map(WordDto::convert)
-                .toList();
-    }
-
-    public List<WordDto> getWordByUser() {
         return wordRepository.findAllByUser(authenticationService.getCurrentUser())
                 .stream()
                 .map(WordDto::convert)

@@ -23,13 +23,8 @@ public class WordController {
     }
 
     @GetMapping
-    public ResponseEntity<List<WordDto>> getWord(){
+    public ResponseEntity<List<WordDto>> getAllWord(){
         return ResponseEntity.ok(service.getAllWords());
-    }
-
-    @GetMapping("/getWordByUser")
-    public ResponseEntity<List<WordDto>> getWordByUser(){
-        return ResponseEntity.ok(service.getWordByUser());
     }
 
     @GetMapping("/{id}")
