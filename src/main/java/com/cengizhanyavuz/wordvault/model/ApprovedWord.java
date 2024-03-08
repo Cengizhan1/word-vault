@@ -13,8 +13,8 @@ import lombok.extern.log4j.Log4j2;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "words")
-public class Word {
+@Table(name = "approved_words")
+public class ApprovedWord {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,8 +25,4 @@ public class Word {
     private String it;
     private String alm;
     private Integer proficiencyLevel = 100;
-
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id")
-    private User user;
 }
