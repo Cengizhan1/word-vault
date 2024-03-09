@@ -22,7 +22,9 @@ public class Word {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
+    @Column(nullable = false)
     private String tr;
+    @Column(nullable = false)
     private String en;
     private String it;
     private String alm;

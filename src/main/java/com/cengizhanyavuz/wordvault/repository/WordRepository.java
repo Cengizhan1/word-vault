@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 import static com.cengizhanyavuz.wordvault.constants.PointConstants.*;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 public interface WordRepository extends JpaRepository<Word, Long> {
 
@@ -17,4 +18,6 @@ public interface WordRepository extends JpaRepository<Word, Long> {
     @Transactional
     @Query("UPDATE Word w SET w.lastAnsweredDate = w.lastAnsweredDate + :WORD_POINTS_TO_INCREASED WHERE w.lastAnsweredDate <= :cutoffDate")
     void increasePointsForOldWords(LocalDateTime cutoffDate);
+
+    Optional<Word> findRandomWord();
 }

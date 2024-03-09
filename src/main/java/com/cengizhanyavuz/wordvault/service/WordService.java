@@ -4,6 +4,7 @@ import com.cengizhanyavuz.wordvault.dto.WordDto;
 import com.cengizhanyavuz.wordvault.dto.request.WordCreateRequest;
 import com.cengizhanyavuz.wordvault.dto.request.WordUpdateRequest;
 import com.cengizhanyavuz.wordvault.exception.WordNotFoundException;
+import com.cengizhanyavuz.wordvault.model.BaseService;
 import com.cengizhanyavuz.wordvault.model.Word;
 import com.cengizhanyavuz.wordvault.repository.WordRepository;
 import com.cengizhanyavuz.wordvault.service.auth.AuthenticationService;
@@ -16,19 +17,17 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
-public class WordService {
+public class WordService extends BaseService {
 
     private final WordRepository wordRepository;
-    private final AuthenticationService authenticationService;
 
 
-    public WordService(WordRepository wordRepository, AuthenticationService authenticationService) {
+    public WordService(WordRepository wordRepository) {
         this.wordRepository = wordRepository;
-        this.authenticationService = authenticationService;
     }
 
     public List<WordDto> getAllWords() {
-        return wordRepository.findAllByUser(authenticationService.getCurrentUser())
+        return wordRepository.findAllByUser(getCurrentUser())
                 .stream()
                 .map(WordDto::convert)
                 .toList();
@@ -36,7 +35,7 @@ public class WordService {
 
     public WordDto createWord(WordCreateRequest request) {
         Word word = new Word();
-        word.setUser(authenticationService.getCurrentUser());
+        word.setUser(getCurrentUser());
         word.setTr(request.tr());
         word.setEn(request.en());
         word.setIt(request.it());
@@ -65,6 +64,21 @@ public class WordService {
         }
     }
 
+    @Scheduled(fixedRate = 24 * 60*30)
+    public void updateProficiencyLevelByLastAnsweredDate() {
+        wordRepository.increasePointsForOldWords(LocalDateTime.now().minusDays(
+                MAX_DAY_COUNT_FOR_UPDATE_WORD));
+    }
+
+    public Word getWordByUserElo() {
+        Integer userElo = getCurrentUser().getElo();
+        return wordRepository.findRandomWord().orElseThrow(
+                () -> new WordNotFoundException("Word not found")
+        );
+    }
+
+    // Private methods
+
     private void updateProficiencyLevelOfWord(Long id ,int point) {
         Word word = getWordById(id);
         word.setProficiencyLevel(word.getProficiencyLevel() + point);
@@ -75,11 +89,5 @@ public class WordService {
         return wordRepository.findById(id).orElseThrow(
                 () -> new WordNotFoundException("Word not found with id: " + id)
         );
-    }
-
-    @Scheduled(fixedRate = 24 * 60*30)
-    public void updateProficiencyLevelByLastAnsweredDate() {
-        wordRepository.increasePointsForOldWords(LocalDateTime.now().minusDays(
-                MAX_DAY_COUNT_FOR_UPDATE_WORD));
     }
 }
