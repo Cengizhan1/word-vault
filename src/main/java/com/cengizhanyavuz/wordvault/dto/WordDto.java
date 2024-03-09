@@ -2,15 +2,16 @@ package com.cengizhanyavuz.wordvault.dto;
 
 import com.cengizhanyavuz.wordvault.model.Word;
 
+import java.time.LocalDateTime;
+
 public record WordDto(
         Long id,
         String tr,
         String en,
         String it,
         String alm,
-        Boolean isApproved,
         Integer proficiencyLevel,
-        Integer personalProficiencyLevel
+        LocalDateTime lastAnsweredDate
 ) {
     public static WordDto convert(Word word) {
         return new WordDto(
@@ -19,9 +20,8 @@ public record WordDto(
                 word.getEn(),
                 word.getIt(),
                 word.getAlm(),
-                word.getIsApproved(),
                 word.getProficiencyLevel(),
-                word.getPersonalProficiencyLevel()
+                word.getLastAnsweredDate()
         );
     }
 }
