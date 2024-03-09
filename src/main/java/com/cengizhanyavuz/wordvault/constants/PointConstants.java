@@ -22,4 +22,7 @@ public class PointConstants {
 
     // Maximum number of days required to update the word's proficiencyLevel
     public static final int MAX_DAY_COUNT_FOR_UPDATE_WORD = 15;
+
+    // Number of words in the test
+    public static final int TEST_WORD_COUNT = 10;
 }
