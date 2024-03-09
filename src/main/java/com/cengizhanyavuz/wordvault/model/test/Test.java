@@ -30,7 +30,7 @@ public class Test {
     private int correctAnswers = 0;
     private int wrongAnswers = 0;
 
-    @OneToMany(mappedBy = "relationTest", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "test", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<TestWord> relationTestWordList;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)

@@ -66,8 +66,8 @@ public class WordService extends BaseService {
 
     @Scheduled(fixedRate = 24 * 60*30)
     public void updateProficiencyLevelByLastAnsweredDate() {
-        wordRepository.increasePointsForOldWords(LocalDateTime.now().minusDays(
-                MAX_DAY_COUNT_FOR_UPDATE_WORD));
+//        wordRepository.increasePointsForOldWords(WORD_POINTS_TO_INCREASED ,LocalDateTime.now().minusDays(
+//                MAX_DAY_COUNT_FOR_UPDATE_WORD));
     }
 
     public List<Word> getWordByUserElo() {
