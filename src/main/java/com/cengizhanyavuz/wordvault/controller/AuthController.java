@@ -17,45 +17,42 @@ import java.io.IOException;
 @RequestMapping("/v1/api/auth")
 public class AuthController {
 
-  private final AuthenticationService service;
-  private static final Logger logger = LoggerFactory.getLogger(AuthController.class);
+    private final AuthenticationService service;
+    private static final Logger logger = LoggerFactory.getLogger(AuthController.class);
 
-  public AuthController(AuthenticationService service) {
-    this.service = service;
-  }
-
-
-  @PostMapping("/register")
-  public ResponseEntity<AuthenticationResponse> register(
-      @RequestBody RegisterRequest request
-  ) {
-    try {
-      return ResponseEntity.ok(service.register(request));
-    } catch (Exception e) {
-      logger.error("register method threw an exception", e);
-      throw e;
+    public AuthController(AuthenticationService service) {
+        this.service = service;
     }
-  }
-  @PostMapping("/login")
-  public ResponseEntity<AuthenticationResponse> authenticate(
-      @RequestBody LoginRequest request
-  ) {
-    try {
-      return ResponseEntity.ok(service.authenticate(request));
-    } catch (Exception e) {
-      logger.error("authenticate method threw an exception", e);
-      throw e;
+
+    @PostMapping("/register")
+    public ResponseEntity<AuthenticationResponse> register(
+            @RequestBody RegisterRequest request
+    ) {
+        try {
+            return ResponseEntity.ok(service.register(request));
+        } catch (Exception e) {
+            logger.error("register method threw an exception", e);
+            throw e;
+        }
     }
-  }
 
+    @PostMapping("/login")
+    public ResponseEntity<AuthenticationResponse> authenticate(
+            @RequestBody LoginRequest request
+    ) {
+        try {
+            return ResponseEntity.ok(service.authenticate(request));
+        } catch (Exception e) {
+            logger.error("authenticate method threw an exception", e);
+            throw e;
+        }
+    }
 
-  @PostMapping("/refresh-token")
-  public void refreshToken(
-      HttpServletRequest request,
-      HttpServletResponse response
-  ) throws IOException {
-    service.refreshToken(request, response);
-  }
-
-
+    @PostMapping("/refresh-token")
+    public void refreshToken(
+            HttpServletRequest request,
+            HttpServletResponse response
+    ) throws IOException {
+        service.refreshToken(request, response);
+    }
 }
