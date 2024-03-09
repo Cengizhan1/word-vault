@@ -2,7 +2,6 @@ package com.cengizhanyavuz.wordvault.model.test;
 
 
 import com.cengizhanyavuz.wordvault.model.Word;
-import com.cengizhanyavuz.wordvault.model.user.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -15,7 +14,7 @@ import lombok.extern.log4j.Log4j2;
 @AllArgsConstructor
 @Entity
 @Table(name = "test_words")
-public class TestWords {
+public class TestWord {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
