@@ -70,11 +70,9 @@ public class WordService extends BaseService {
                 MAX_DAY_COUNT_FOR_UPDATE_WORD));
     }
 
-    public Word getWordByUserElo() {
-        Integer userElo = getCurrentUser().getElo();
-        return wordRepository.findRandomWord().orElseThrow(
-                () -> new WordNotFoundException("Word not found")
-        );
+    public List<Word> getWordByUserElo() {
+        Integer userElo = getCurrentUser().getElo(); // TODO
+        return wordRepository.findRandomWords(TEST_WORD_COUNT);
     }
 
     // Private methods

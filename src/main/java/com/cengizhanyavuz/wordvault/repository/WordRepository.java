@@ -19,5 +19,5 @@ public interface WordRepository extends JpaRepository<Word, Long> {
     @Query("UPDATE Word w SET w.lastAnsweredDate = w.lastAnsweredDate + :WORD_POINTS_TO_INCREASED WHERE w.lastAnsweredDate <= :cutoffDate")
     void increasePointsForOldWords(LocalDateTime cutoffDate);
 
-    Optional<Word> findRandomWord();
+    List<Word> findRandomWords(int count);
 }
