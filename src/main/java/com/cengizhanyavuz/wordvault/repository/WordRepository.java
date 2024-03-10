@@ -22,5 +22,6 @@ public interface WordRepository extends JpaRepository<Word, Long> {
 //    void increasePointsForOldWords(@Param("pointsToIncrease") long pointsToIncrease, @Param("cutoffDate") LocalDateTime cutoffDate);
 
 
-    List<Word> findRandomWords(int count);
+    @Query(value = "SELECT * FROM word_table ORDER BY RAND() LIMIT :count", nativeQuery = true)
+    List<Word> findRandomWords(@Param("count") int count);
 }
