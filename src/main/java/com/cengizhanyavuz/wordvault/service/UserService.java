@@ -2,13 +2,15 @@ package com.cengizhanyavuz.wordvault.service;
 
 import com.cengizhanyavuz.wordvault.dto.UserDto;
 import com.cengizhanyavuz.wordvault.dto.request.UserUpdateRequest;
-import com.cengizhanyavuz.wordvault.model.BaseService;
 import com.cengizhanyavuz.wordvault.model.user.User;
 import com.cengizhanyavuz.wordvault.repository.UserRepository;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UserService extends BaseService {
+public class UserService  {
 
     private final UserRepository userRepository;
 
@@ -16,8 +18,12 @@ public class UserService extends BaseService {
         this.userRepository = userRepository;
     }
 
-    protected Integer getUserElo() {
-       return getCurrentUser().getElo();
+
+    protected User getCurrentUser() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        return userRepository.findByUsername(authentication.getName()).orElseThrow((
+                () -> new UsernameNotFoundException("User not found with username: " + getCurrentUser().getUsername()))
+        );
     }
 
 

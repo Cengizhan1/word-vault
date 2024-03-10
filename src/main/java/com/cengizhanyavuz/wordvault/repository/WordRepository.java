@@ -24,4 +24,6 @@ public interface WordRepository extends JpaRepository<Word, Long> {
 
     @Query(value = "SELECT * FROM word_table ORDER BY RAND() LIMIT :count", nativeQuery = true)
     List<Word> findRandomWords(@Param("count") int count);
+
+    Boolean existsByUserAndTr(User user, String tr);
 }

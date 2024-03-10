@@ -4,6 +4,7 @@ import com.cengizhanyavuz.wordvault.dto.WordDto;
 import com.cengizhanyavuz.wordvault.dto.request.WordCreateRequest;
 import com.cengizhanyavuz.wordvault.dto.request.WordUpdateRequest;
 import com.cengizhanyavuz.wordvault.service.WordService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
