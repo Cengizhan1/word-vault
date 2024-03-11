@@ -13,7 +13,6 @@ public class PointConstants {
     //Initial points to be assigned to words+
     public static final int WORD_POINT = 100;
 
-    public static final int USER_POINTS_TO_DECREASE = -1;
     public static final int USER_POINTS_TO_INCREASED = 1;
     public static final int WORD_POINTS_TO_DECREASED = -20;
     public static final int WORD_POINTS_TO_INCREASED = 20;

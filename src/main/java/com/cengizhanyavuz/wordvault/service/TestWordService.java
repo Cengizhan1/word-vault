@@ -7,6 +7,7 @@ import com.cengizhanyavuz.wordvault.repository.TestWordRepository;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.cengizhanyavuz.wordvault.constants.PointConstants.*;
@@ -41,13 +42,23 @@ public class TestWordService {
 
     @Async
     protected void updateWordsElo(List<TestWord> testWords) {
+        List<Word> words = new ArrayList<>();
         for (TestWord testWord : testWords) {
-            wordService.updateProficiencyLevelOfWord(testWord.getWord(),
+            Word word = testWord.getWord();
+            updateProficiencyLevelOfWord(word,
                     decideDecreaseOrIncrease(testWord.isCorrect()));
+            words.add(word);
         }
+        wordService.saveAll(words);
     }
 
+    @Async
+    private void updateProficiencyLevelOfWord(Word word ,int point) {
+        word.setProficiencyLevel(word.getProficiencyLevel() + point);
+    }
+
+    @Async
     private int decideDecreaseOrIncrease(Boolean result) {
-        return result ? WORD_POINTS_TO_INCREASED : WORD_POINTS_TO_DECREASED;
+        return result ? WORD_POINTS_TO_DECREASED : WORD_POINTS_TO_INCREASED;
     }
 }

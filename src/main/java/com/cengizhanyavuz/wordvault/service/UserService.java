@@ -5,13 +5,16 @@ import com.cengizhanyavuz.wordvault.dto.request.UserUpdateRequest;
 import com.cengizhanyavuz.wordvault.exception.UsernameAlreadyExistsException;
 import com.cengizhanyavuz.wordvault.model.user.User;
 import com.cengizhanyavuz.wordvault.repository.UserRepository;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import static com.cengizhanyavuz.wordvault.constants.PointConstants.*;
+
 @Service
-public class UserService  {
+public class UserService {
 
     private final UserRepository userRepository;
 
@@ -38,6 +41,13 @@ public class UserService  {
 
 
     // Protected methods
+    @Async
+    protected void updateUserElo(int correctAnswers, int wrongAnswers) {
+        User user = getCurrentUser();
+        user.setElo(user.getElo() + (correctAnswers - wrongAnswers) * USER_POINTS_TO_INCREASED);
+        userRepository.save(user);
+    }
+
     protected User getCurrentUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         return userRepository.findByUsername(authentication.getName()).orElseThrow((

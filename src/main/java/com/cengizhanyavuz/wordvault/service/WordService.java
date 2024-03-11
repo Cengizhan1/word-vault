@@ -89,4 +89,9 @@ public class WordService {
                 () -> new WordNotFoundException("Word not found with id: " + id)
         );
     }
+
+    @Async
+    protected void saveAll(List<Word> words) {
+        wordRepository.saveAll(words);
+    }
 }

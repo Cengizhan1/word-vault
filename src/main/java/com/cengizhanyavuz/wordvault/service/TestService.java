@@ -63,11 +63,13 @@ public class TestService {
                 wrongAnswers++;
             }
         }
-        // TODO doğru ve yanlış işlenen kelimeler servise geri dödürülecek ve puanları güncellenecek
+        int finalCorrectAnswers = correctAnswers;
+        int finalWrongAnswers = wrongAnswers;
         CompletableFuture.runAsync(() -> {
              testWordService.updateWordsElo(testWords);
+             userService.updateUserElo(finalCorrectAnswers, finalWrongAnswers);
         });
-        return new TestResultDto(correctAnswers, wrongAnswers);
+        return new TestResultDto(finalCorrectAnswers, finalWrongAnswers);
     }
 
     protected Test findCurrentTest() {
