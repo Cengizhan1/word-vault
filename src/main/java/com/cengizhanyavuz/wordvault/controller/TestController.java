@@ -1,11 +1,11 @@
 package com.cengizhanyavuz.wordvault.controller;
 
-import com.cengizhanyavuz.wordvault.dto.TestStartDto;
+import com.cengizhanyavuz.wordvault.dto.test.TestResultDto;
+import com.cengizhanyavuz.wordvault.dto.test.TestStartDto;
+import com.cengizhanyavuz.wordvault.dto.test.TestFinishRequestDto;
 import com.cengizhanyavuz.wordvault.service.TestService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/v1/api/test")
@@ -20,5 +20,10 @@ public class TestController {
     @GetMapping("/start")
     public ResponseEntity<TestStartDto> startTest() {
         return ResponseEntity.ok(service.startTest());
+    }
+
+    @PostMapping("/finish")
+    public ResponseEntity<TestResultDto> finishTest(@RequestBody TestFinishRequestDto testFinishRequestDto) {
+        return ResponseEntity.ok(service.finishTest(testFinishRequestDto));
     }
 }

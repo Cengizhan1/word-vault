@@ -1,4 +1,4 @@
-package com.cengizhanyavuz.wordvault.dto;
+package com.cengizhanyavuz.wordvault.dto.test;
 
 import java.util.List;
 

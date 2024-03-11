@@ -57,4 +57,14 @@ public class GeneralExceptionAdvice extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);
     }
 
+    @ExceptionHandler(TestNotFoundException.class)
+    public ResponseEntity<?> handle(TestNotFoundException exception) {
+        return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(ActiveTestAlreadyExistsException.class)
+    public ResponseEntity<?> handle(ActiveTestAlreadyExistsException exception) {
+        return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);
+    }
+
 }
