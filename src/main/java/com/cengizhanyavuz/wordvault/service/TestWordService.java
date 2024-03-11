@@ -48,10 +48,6 @@ public class TestWordService {
     }
 
     private int decideDecreaseOrIncrease(Boolean result) {
-        if (result) {
-            return WORD_POINTS_TO_DECREASED;
-        } else {
-            return WORD_POINTS_TO_INCREASED;
-        }
+        return result ? WORD_POINTS_TO_INCREASED : WORD_POINTS_TO_DECREASED;
     }
 }
