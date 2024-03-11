@@ -1,0 +1,66 @@
+Table approved_words {
+  id bigint [pk, increment] // primary key
+  tr varchar
+  en varchar
+  it varchar
+  alm varchar
+  proficiencyLevel int
+}
+
+Table words {
+  id bigint [pk, increment] // primary key
+  tr varchar [not null]
+  en varchar [not null]
+  it varchar
+  alm varchar
+  proficiencyLevel int
+  lastAnsweredDate timestamp
+  user_id bigint 
+}
+
+Table users {
+  id bigint [pk, increment] // primary key
+  name varchar
+  surname varchar
+  username varchar [unique]
+  password varchar
+  elo int
+  age int
+  gender varchar
+  accountNonExpired boolean
+  isEnabled boolean
+  accountNonLocked boolean
+  credentialsNonExpired boolean
+  role varchar
+}
+
+Table tokens {
+  id int [pk, increment] // primary key
+  token varchar [unique]
+  revoked boolean
+  expired boolean
+}
+
+Table tests {
+  id bigint [pk, increment] // primary key
+  createdDate timestamp
+  answeredDate timestamp
+  testState varchar
+  correctAnswers int
+  wrongAnswers int
+  user_id bigint
+}
+
+Table test_words {
+  id bigint [pk, increment] // primary key
+  question varchar
+  answer varchar
+  isCorrect boolean
+  test_id bigint
+  word_id bigint
+}
+
+Ref: words.user_id > users.id
+Ref: tests.user_id > users.id
+Ref: test_words.test_id > tests.id
+Ref: test_words.word_id > words.id
