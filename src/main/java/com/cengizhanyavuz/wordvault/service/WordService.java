@@ -8,6 +8,7 @@ import com.cengizhanyavuz.wordvault.exception.WordNotFoundException;
 import com.cengizhanyavuz.wordvault.model.Word;
 import com.cengizhanyavuz.wordvault.model.user.User;
 import com.cengizhanyavuz.wordvault.repository.WordRepository;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
@@ -64,14 +65,6 @@ public class WordService {
         return WordDto.convert(wordRepository.save(word));
     }
 
-    public void updateProficiencyLevelOfWord(Long id, Boolean result) {
-        if (result) {
-            updateProficiencyLevelOfWord(id, WORD_POINTS_TO_DECREASED);
-        } else {
-            updateProficiencyLevelOfWord(id, WORD_POINTS_TO_INCREASED);
-        }
-    }
-
     @Scheduled(fixedRate = 24 * 60*30)
     public void updateProficiencyLevelByLastAnsweredDate() {
 //        wordRepository.increasePointsForOldWords(WORD_POINTS_TO_INCREASED ,LocalDateTime.now().minusDays(
@@ -85,8 +78,8 @@ public class WordService {
 
     // Private methods
 
-    private void updateProficiencyLevelOfWord(Long id ,int point) {
-        Word word = getWordById(id);
+    @Async
+    protected void updateProficiencyLevelOfWord(Word word ,int point) {
         word.setProficiencyLevel(word.getProficiencyLevel() + point);
         wordRepository.save(word);
     }

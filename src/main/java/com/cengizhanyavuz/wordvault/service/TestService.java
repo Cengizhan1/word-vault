@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.CompletableFuture;
 
 @Service
 public class TestService {
@@ -62,10 +63,11 @@ public class TestService {
                 wrongAnswers++;
             }
         }
-        // TODO doğru ve yanlış iişretlenen kelimeler servise geri dödürülecek ve puanları güncellenecek
+        // TODO doğru ve yanlış işlenen kelimeler servise geri dödürülecek ve puanları güncellenecek
+        CompletableFuture.runAsync(() -> {
+             testWordService.updateWordsElo(testWords);
+        });
         return new TestResultDto(correctAnswers, wrongAnswers);
-
-
     }
 
     protected Test findCurrentTest() {
