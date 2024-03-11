@@ -11,6 +11,7 @@ import com.cengizhanyavuz.wordvault.model.test.TestWord;
 import com.cengizhanyavuz.wordvault.repository.TestRepository;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -30,22 +31,41 @@ public class TestService {
 
     public TestStartDto startTest() {
         checkCurrentTest();
-        List<TestWord> words = testWordService.getWords();
         Test test = new Test();
-        test.setRelationTestWordList(words);
+        test.setUser(userService.getCurrentUser());
         testRepository.save(test);
+        List<TestWord> words = testWordService.getWords(test);
         return new TestStartDto(words.stream().map(TestWord::getQuestion).toList());
     }
 
 
     public TestResultDto finishTest(TestFinishRequestDto testFinishRequestDto) {
         Test test =findCurrentTest();
+        TestResultDto testResultDto = checkTestResult(testFinishRequestDto, test.getId());
         test.setTestState(TestState.ANSWERED);
-        test.setCorrectAnswers(7);
-        test.setWrongAnswers(3);
-        test.setAnsweredDate(testFinishRequestDto.lastAnsweredDate());
+        test.setCorrectAnswers(testResultDto.correctAnswers());
+        test.setWrongAnswers(testResultDto.wrongAnswers());
+        test.setAnsweredDate(LocalDateTime.now());
         testRepository.save(test);
-        return new TestResultDto(test.getCorrectAnswers(), test.getWrongAnswers());
+        return testResultDto;
+    }
+
+    private TestResultDto checkTestResult(TestFinishRequestDto testFinishRequestDto,Long testId) {
+        int correctAnswers = 0;
+        int wrongAnswers = 0;
+        List<TestWord> testWords = testWordService.getWordsByTestId(testId);
+        for (int i = 0; i < testWords.size(); i++) {
+            if (testFinishRequestDto.answers().get(i).equalsIgnoreCase(testWords.get(i).getAnswer())) {
+                correctAnswers++;
+                testWords.get(i).setCorrect(true);
+            } else {
+                wrongAnswers++;
+            }
+        }
+        // TODO doğru ve yanlış iişretlenen kelimeler servise geri dödürülecek ve puanları güncellenecek
+        return new TestResultDto(correctAnswers, wrongAnswers);
+
+
     }
 
     protected Test findCurrentTest() {

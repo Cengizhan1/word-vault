@@ -1,6 +1,7 @@
 package com.cengizhanyavuz.wordvault.service;
 
 import com.cengizhanyavuz.wordvault.model.Word;
+import com.cengizhanyavuz.wordvault.model.test.Test;
 import com.cengizhanyavuz.wordvault.model.test.TestWord;
 import com.cengizhanyavuz.wordvault.repository.TestWordRepository;
 import org.springframework.stereotype.Service;
@@ -18,16 +19,20 @@ public class TestWordService {
         this.wordService = wordService;
     }
 
-    protected List<TestWord> getWords() {
+    protected List<TestWord> getWords(Test test) {
         List<Word> words = wordService.getWordByUserElo();
         return testWordRepository.saveAll(words.stream().map(word ->
                 new TestWord(
                         null,
                         word.getTr(),
-                        null,
+                        word.getEn(),
                         false,
-                        null,
+                        test,
                         word)
         ).toList());
+    }
+
+    protected List<TestWord> getWordsByTestId(Long testId) {
+        return testWordRepository.findAllByTestId(testId);
     }
 }
