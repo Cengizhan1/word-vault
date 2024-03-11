@@ -26,6 +26,7 @@ public class Test {
 
     private LocalDateTime createdDate = LocalDateTime.now();
     private LocalDateTime answeredDate;
+    @Enumerated(EnumType.STRING)
     private TestState testState = TestState.CREATED;
     private int correctAnswers = 0;
     private int wrongAnswers = 0;
