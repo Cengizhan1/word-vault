@@ -1,6 +1,6 @@
 # WORD-VAULT
-[DB diagram tasarımı](./dbdiagrma.jpg)
-[DB diagram text](./dbdiagrma.txt)
+[DB diagram tasarımı](./dbdiagram.jpg)
+[DB diagram text](./dbdiagram.txt)
 Word-Vault, yabancı dil öğrenirken sıkça karşılaşılan sorunları çözmek amacıyla tasarlanmış bir uygulamadır. Bu uygulama, bilinmeyen kelimeleri not almanıza ve daha sonra bu kelimeleri tekrar etmek için otomatik sınavlar oluşturmanıza olanak tanır. Aynı zamanda önemli konuları not almanızı sağlar ve bu notlara kolayca erişmenizi sağlar.
 
 ## Özellikler
