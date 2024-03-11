@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import static com.cengizhanyavuz.wordvault.constants.PointConstants.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -67,8 +68,8 @@ public class WordService {
 
     @Scheduled(fixedRate = 24 * 60*30)
     public void updateProficiencyLevelByLastAnsweredDate() {
-//        wordRepository.increasePointsForOldWords(WORD_POINTS_TO_INCREASED ,LocalDateTime.now().minusDays(
-//                MAX_DAY_COUNT_FOR_UPDATE_WORD));
+        wordRepository.increaseProficiencyLevels(WORD_POINTS_TO_INCREASED , LocalDateTime.now().minusDays(
+                MAX_DAY_COUNT_FOR_UPDATE_WORD));
     }
 
     public List<Word> getWordByUserElo() {
@@ -76,13 +77,6 @@ public class WordService {
         return wordRepository.findRandomWords(TEST_WORD_COUNT);
     }
 
-    // Private methods
-
-    @Async
-    protected void updateProficiencyLevelOfWord(Word word ,int point) {
-        word.setProficiencyLevel(word.getProficiencyLevel() + point);
-        wordRepository.save(word);
-    }
 
     private Word getWordById(Long id) {
         return wordRepository.findById(id).orElseThrow(

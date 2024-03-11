@@ -16,10 +16,12 @@ import java.util.Optional;
 public interface WordRepository extends JpaRepository<Word, Long> {
 
     List<Word> findAllByUser(User user);
-//    @Modifying
-//    @Transactional
-//    @Query("UPDATE Word w SET w.lastAnsweredDate = w.lastAnsweredDate + INTERVAL :pointsToIncrease SECOND WHERE w.lastAnsweredDate <= :cutoffDate")
-//    void increasePointsForOldWords(@Param("pointsToIncrease") long pointsToIncrease, @Param("cutoffDate") LocalDateTime cutoffDate);
+
+
+    @Transactional
+    @Modifying
+    @Query("UPDATE Word w SET w.proficiencyLevel = w.proficiencyLevel + :points WHERE w.lastAnsweredDate < :date")
+    void increaseProficiencyLevels(int points,LocalDateTime date);
 
 
     @Query(value = "SELECT * FROM words ORDER BY RAND() LIMIT :count", nativeQuery = true)
