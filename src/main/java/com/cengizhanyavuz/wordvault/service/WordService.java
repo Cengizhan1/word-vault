@@ -35,6 +35,7 @@ public class WordService {
                 .map(WordDto::convert)
                 .toList();
     }
+
     private void checkWordExists(User user, String tr) {
         if (wordRepository.existsByUserAndTr(user, tr)) {
             throw new WordExistsException("Word already exists by this user");
@@ -66,14 +67,13 @@ public class WordService {
         return WordDto.convert(wordRepository.save(word));
     }
 
-    @Scheduled(fixedRate = 24 * 60*30)
+    @Scheduled(fixedRate = 24 * 60 * 30)
     public void updateProficiencyLevelByLastAnsweredDate() {
-        wordRepository.increaseProficiencyLevels(WORD_POINTS_TO_INCREASED , LocalDateTime.now().minusDays(
+        wordRepository.increaseProficiencyLevels(WORD_POINTS_TO_INCREASED, LocalDateTime.now().minusDays(
                 MAX_DAY_COUNT_FOR_UPDATE_WORD));
     }
 
-    public List<Word> getWordByUserElo() {
-        Integer userElo = userService.getCurrentUser().getElo(); // TODO
+    public List<Word> getWords() {
         return wordRepository.findRandomWords(TEST_WORD_COUNT);
     }
 

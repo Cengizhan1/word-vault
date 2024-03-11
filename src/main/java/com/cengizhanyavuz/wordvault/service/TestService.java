@@ -30,7 +30,7 @@ public class TestService {
         this.userService = userService;
     }
 
-    public TestStartDto startTest() {
+    public TestStartDto startPersonalTest() {
         checkCurrentTest();
         Test test = new Test();
         test.setUser(userService.getCurrentUser());
@@ -40,7 +40,7 @@ public class TestService {
     }
 
 
-    public TestResultDto finishTest(TestFinishRequestDto testFinishRequestDto) {
+    public TestResultDto finishPersonalTest(TestFinishRequestDto testFinishRequestDto) {
         Test test =findCurrentTest();
         TestResultDto testResultDto = checkTestResult(testFinishRequestDto, test.getId());
         test.setTestState(TestState.ANSWERED);
@@ -51,6 +51,26 @@ public class TestService {
         return testResultDto;
     }
 
+    public TestStartDto startGlobalTest() {
+        checkCurrentTest();
+        Test test = new Test();
+        test.setUser(userService.getCurrentUser());
+        testRepository.save(test);
+        List<TestWord> words = testWordService.getGlobalWords(test);
+        return new TestStartDto(words.stream().map(TestWord::getQuestion).toList());
+    }
+
+
+    public TestResultDto finishGlobalTest(TestFinishRequestDto testFinishRequestDto) {
+        Test test =findCurrentTest();
+        TestResultDto testResultDto = checkTestResult(testFinishRequestDto, test.getId());
+        test.setTestState(TestState.ANSWERED);
+        test.setCorrectAnswers(testResultDto.correctAnswers());
+        test.setWrongAnswers(testResultDto.wrongAnswers());
+        test.setAnsweredDate(LocalDateTime.now());
+        testRepository.save(test);
+        return testResultDto;
+    }
     private TestResultDto checkTestResult(TestFinishRequestDto testFinishRequestDto,Long testId) {
         int correctAnswers = 0;
         int wrongAnswers = 0;

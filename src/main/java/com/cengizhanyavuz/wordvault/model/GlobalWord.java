@@ -1,7 +1,6 @@
 package com.cengizhanyavuz.wordvault.model;
 
 
-import com.cengizhanyavuz.wordvault.model.user.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,8 +12,8 @@ import lombok.extern.log4j.Log4j2;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "approved_words")
-public class ApprovedWord {
+@Table(name = "global_words")
+public class GlobalWord {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
