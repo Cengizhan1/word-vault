@@ -1,5 +1,6 @@
 package com.cengizhanyavuz.wordvault.service.auth;
 
+import com.cengizhanyavuz.wordvault.config.DummyData;
 import com.cengizhanyavuz.wordvault.dto.request.LoginRequest;
 import com.cengizhanyavuz.wordvault.dto.request.RegisterRequest;
 import com.cengizhanyavuz.wordvault.dto.response.AuthenticationResponse;
@@ -31,6 +32,7 @@ public class AuthenticationService {
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
+    private final DummyData dummyData;
 
     public AuthenticationResponse register(RegisterRequest request) {
 
@@ -50,6 +52,7 @@ public class AuthenticationService {
         var jwtToken = jwtService.generateToken(user);
         var refreshToken = jwtService.generateRefreshToken(user);
         saveUserToken(savedUser, jwtToken);
+        dummyData.run();
         return AuthenticationResponse.builder()
                 .accessToken(jwtToken)
                 .refreshToken(refreshToken)
