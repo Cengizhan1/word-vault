@@ -23,5 +23,5 @@ public class GlobalWord {
     private String en;
     private String it;
     private String alm;
-    private Integer proficiencyLevel = 100;
+    private Integer elo = 100;
 }

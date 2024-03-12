@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.cengizhanyavuz.wordvault.constants.PointConstants.*;
+import static com.cengizhanyavuz.wordvault.constants.PointConstants.GLOBAL_WORD_POINTS_TO_DECREASED;
 
 @Service
 public class TestWordService {
@@ -64,8 +65,8 @@ public class TestWordService {
             List<Word> words = new ArrayList<>();
             for (TestWord testWord : testWords) {
                 Word word = testWord.getWord();
-                updateProficiencyLevelOfWord(word,
-                        decideDecreaseOrIncrease(testWord.isCorrect()));
+                updateEloOfWord(word,
+                        testWord.isCorrect() ? WORD_POINTS_TO_INCREASED : WORD_POINTS_TO_DECREASED);
                 words.add(word);
             }
             wordService.saveAll(words);
@@ -73,8 +74,8 @@ public class TestWordService {
             List<GlobalWord> words = new ArrayList<>();
             for (TestWord testWord : testWords) {
                 GlobalWord word = testWord.getGlobalWord();
-                updateProficiencyLevelOfGlobalWord(word,
-                        decideDecreaseOrIncrease(testWord.isCorrect()));
+                updateEloOfGlobalWord(word,
+                        testWord.isCorrect() ? GLOBAL_WORD_POINTS_TO_INCREASED : GLOBAL_WORD_POINTS_TO_DECREASED);
                 words.add(word);
             }
             globalWordService.saveAll(words);
@@ -82,16 +83,11 @@ public class TestWordService {
     }
 
     @Async
-    private void updateProficiencyLevelOfWord(Word word, int point) {
-        word.setProficiencyLevel(word.getProficiencyLevel() + point);
+    private void updateEloOfWord(Word word, int point) {
+        word.setElo(word.getElo() + point);
     }
     @Async
-    private void updateProficiencyLevelOfGlobalWord(GlobalWord word, int point) {
-        word.setProficiencyLevel(word.getProficiencyLevel() + point);
-    }
-
-    @Async
-    private int decideDecreaseOrIncrease(Boolean result) {
-        return result ? WORD_POINTS_TO_DECREASED : WORD_POINTS_TO_INCREASED;
+    private void updateEloOfGlobalWord(GlobalWord word, int point) {
+        word.setElo(word.getElo() + point);
     }
 }

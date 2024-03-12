@@ -17,14 +17,12 @@ public interface WordRepository extends JpaRepository<Word, Long> {
 
     List<Word> findAllByUser(User user);
 
-
     @Transactional
     @Modifying
-    @Query("UPDATE Word w SET w.proficiencyLevel = w.proficiencyLevel + :points WHERE w.lastAnsweredDate < :date")
-    void increaseProficiencyLevels(int points,LocalDateTime date);
+    @Query("UPDATE Word w SET w.elo = w.elo + :points WHERE w.lastAnsweredDate < :date")
+    void increaseElo(int points,LocalDateTime date);
 
-
-    @Query(value = "SELECT * FROM words ORDER BY RAND() LIMIT :count", nativeQuery = true)
+    @Query(value = "SELECT * FROM words WHERE elo > 0 ORDER BY RAND() LIMIT :count", nativeQuery = true)
     List<Word> findRandomWords(@Param("count") int count);
 
     Boolean existsByUserAndTr(User user, String tr);

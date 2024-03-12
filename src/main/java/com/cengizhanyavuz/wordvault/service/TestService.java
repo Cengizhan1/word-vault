@@ -41,14 +41,7 @@ public class TestService {
 
 
     public TestResultDto finishPersonalTest(TestFinishRequestDto testFinishRequestDto) {
-        Test test =findCurrentTest();
-        TestResultDto testResultDto = checkTestResult(testFinishRequestDto, test.getId());
-        test.setTestState(TestState.ANSWERED);
-        test.setCorrectAnswers(testResultDto.correctAnswers());
-        test.setWrongAnswers(testResultDto.wrongAnswers());
-        test.setAnsweredDate(LocalDateTime.now());
-        testRepository.save(test);
-        return testResultDto;
+        return getTestResultDto(testFinishRequestDto);
     }
 
     public TestStartDto startGlobalTest() {
@@ -62,6 +55,10 @@ public class TestService {
 
 
     public TestResultDto finishGlobalTest(TestFinishRequestDto testFinishRequestDto) {
+        return getTestResultDto(testFinishRequestDto);
+    }
+
+    private TestResultDto getTestResultDto(TestFinishRequestDto testFinishRequestDto) {
         Test test =findCurrentTest();
         TestResultDto testResultDto = checkTestResult(testFinishRequestDto, test.getId());
         test.setTestState(TestState.ANSWERED);
@@ -71,6 +68,7 @@ public class TestService {
         testRepository.save(test);
         return testResultDto;
     }
+
     private TestResultDto checkTestResult(TestFinishRequestDto testFinishRequestDto,Long testId) {
         int correctAnswers = 0;
         int wrongAnswers = 0;

@@ -10,7 +10,7 @@ public record WordDto(
         String en,
         String it,
         String alm,
-        Integer proficiencyLevel,
+        Integer elo,
         LocalDateTime lastAnsweredDate
 ) {
     public static WordDto convert(Word word) {
@@ -20,7 +20,7 @@ public record WordDto(
                 word.getEn(),
                 word.getIt(),
                 word.getAlm(),
-                word.getProficiencyLevel(),
+                word.getElo(),
                 word.getLastAnsweredDate()
         );
     }

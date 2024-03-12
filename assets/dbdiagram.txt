@@ -4,7 +4,7 @@ Table approved_words {
   en varchar
   it varchar
   alm varchar
-  proficiencyLevel int
+  elo int
 }
 
 Table words {
@@ -13,7 +13,7 @@ Table words {
   en varchar [not null]
   it varchar
   alm varchar
-  proficiencyLevel int
+  elo int
   lastAnsweredDate timestamp
   user_id bigint 
 }

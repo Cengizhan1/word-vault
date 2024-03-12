@@ -28,7 +28,7 @@ public class Word {
     private String en;
     private String it;
     private String alm;
-    private Integer proficiencyLevel = 100;
+    private Integer elo = 100;
     private LocalDateTime lastAnsweredDate = LocalDateTime.now();
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)

@@ -68,8 +68,8 @@ public class WordService {
     }
 
     @Scheduled(fixedRate = 24 * 60 * 30)
-    public void updateProficiencyLevelByLastAnsweredDate() {
-        wordRepository.increaseProficiencyLevels(WORD_POINTS_TO_INCREASED, LocalDateTime.now().minusDays(
+    public void updateEloByLastAnsweredDate() {
+        wordRepository.increaseElo(WORD_POINTS_TO_INCREASED, LocalDateTime.now().minusDays(
                 MAX_DAY_COUNT_FOR_UPDATE_WORD));
     }
 
