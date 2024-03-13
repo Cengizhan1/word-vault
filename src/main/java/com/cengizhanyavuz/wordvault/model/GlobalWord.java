@@ -7,6 +7,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 
+import static com.cengizhanyavuz.wordvault.constants.PointConstants.WORD_POINT;
+
 @Data
 @Log4j2
 @NoArgsConstructor
@@ -23,5 +25,5 @@ public class GlobalWord {
     private String en;
     private String it;
     private String alm;
-    private Integer elo = 100;
+    private Integer elo = WORD_POINT;
 }

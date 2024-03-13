@@ -28,10 +28,9 @@ public class UserService {
     }
 
     public UserDto updateUser(UserUpdateRequest request) {
-        checkUserNameExists(request.username());
         User user = getCurrentUser();
         user.setName(request.name());
-        user.setUsername(request.username());
+        user.setUsername(user.getUsername());
         user.setSurname(request.surname());
         user.setPassword(request.password());
         user.setAge(request.age());
@@ -42,9 +41,8 @@ public class UserService {
 
     // Protected methods
     @Async
-    protected void updateUserElo(int correctAnswers, int wrongAnswers) {
-        User user = getCurrentUser();
-        user.setElo(user.getElo() + (correctAnswers - wrongAnswers) * USER_POINTS_TO_INCREASED);
+    protected void updateUserElo(int correctAnswers, int wrongAnswers,User user) {
+        user.setElo(user.getElo() + ((correctAnswers - wrongAnswers) * USER_POINTS_TO_INCREASED));
         userRepository.save(user);
     }
 

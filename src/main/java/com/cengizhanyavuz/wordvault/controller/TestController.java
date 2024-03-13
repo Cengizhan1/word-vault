@@ -4,6 +4,7 @@ import com.cengizhanyavuz.wordvault.dto.test.TestResultDto;
 import com.cengizhanyavuz.wordvault.dto.test.TestStartDto;
 import com.cengizhanyavuz.wordvault.dto.test.TestFinishRequestDto;
 import com.cengizhanyavuz.wordvault.service.TestService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,7 +24,7 @@ public class TestController {
     }
 
     @PostMapping("/personal/finish")
-    public ResponseEntity<TestResultDto> finishPersonalTest(@RequestBody TestFinishRequestDto testFinishRequestDto) {
+    public ResponseEntity<TestResultDto> finishPersonalTest(@Valid @RequestBody TestFinishRequestDto testFinishRequestDto) {
         return ResponseEntity.ok(service.finishPersonalTest(testFinishRequestDto));
     }
 

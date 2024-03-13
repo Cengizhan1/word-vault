@@ -8,6 +8,7 @@ import com.cengizhanyavuz.wordvault.exception.TestNotFoundException;
 import com.cengizhanyavuz.wordvault.model.test.Test;
 import com.cengizhanyavuz.wordvault.model.test.TestState;
 import com.cengizhanyavuz.wordvault.model.test.TestWord;
+import com.cengizhanyavuz.wordvault.model.user.User;
 import com.cengizhanyavuz.wordvault.repository.TestRepository;
 import org.springframework.stereotype.Service;
 
@@ -83,9 +84,10 @@ public class TestService {
         }
         int finalCorrectAnswers = correctAnswers;
         int finalWrongAnswers = wrongAnswers;
+        User user = userService.getCurrentUser();
         CompletableFuture.runAsync(() -> {
              testWordService.updateWordsElo(testWords);
-             userService.updateUserElo(finalCorrectAnswers, finalWrongAnswers);
+             userService.updateUserElo(finalCorrectAnswers, finalWrongAnswers,user);
         });
         return new TestResultDto(finalCorrectAnswers, finalWrongAnswers);
     }

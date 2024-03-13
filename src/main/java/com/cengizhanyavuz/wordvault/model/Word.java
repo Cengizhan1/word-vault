@@ -10,6 +10,8 @@ import lombok.extern.log4j.Log4j2;
 
 import java.time.LocalDateTime;
 
+import static com.cengizhanyavuz.wordvault.constants.PointConstants.WORD_POINT;
+
 @Data
 @Log4j2
 @NoArgsConstructor
@@ -28,7 +30,7 @@ public class Word {
     private String en;
     private String it;
     private String alm;
-    private Integer elo = 100;
+    private Integer elo = WORD_POINT;
     private LocalDateTime lastAnsweredDate = LocalDateTime.now();
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)

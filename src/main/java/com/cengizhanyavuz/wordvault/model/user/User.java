@@ -9,6 +9,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import static com.cengizhanyavuz.wordvault.constants.PointConstants.*;
 
 
 @Data
@@ -27,7 +28,7 @@ public class User implements UserDetails {
     @Column(unique = true)
     private String username;
     private String password;
-    private Integer elo;
+    private Integer elo = USER_POINT;
     private Integer age;
     @Enumerated(EnumType.STRING)
     private Gender gender;
