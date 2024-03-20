@@ -3,6 +3,7 @@ package com.cengizhanyavuz.wordvault.service;
 import com.cengizhanyavuz.wordvault.dto.WordDto;
 import com.cengizhanyavuz.wordvault.dto.request.WordCreateRequest;
 import com.cengizhanyavuz.wordvault.dto.request.WordUpdateRequest;
+import com.cengizhanyavuz.wordvault.exception.InsufficientWordsException;
 import com.cengizhanyavuz.wordvault.exception.WordExistsException;
 import com.cengizhanyavuz.wordvault.exception.WordNotFoundException;
 import com.cengizhanyavuz.wordvault.model.Word;
@@ -73,8 +74,12 @@ public class WordService {
                 MAX_DAY_COUNT_FOR_UPDATE_WORD));
     }
 
-    public List<Word> getWords() {
-        return wordRepository.findRandomWords(TEST_WORD_COUNT);
+    public List<Word> getWords() throws InsufficientWordsException {
+        List<Word> words = wordRepository.findRandomWords(TEST_WORD_COUNT, LocalDateTime.now().minusDays(1));
+        if (words.size() != TEST_WORD_COUNT) {
+            throw new InsufficientWordsException();
+        }
+        return words;
     }
 
 

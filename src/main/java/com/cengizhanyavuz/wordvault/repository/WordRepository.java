@@ -22,8 +22,8 @@ public interface WordRepository extends JpaRepository<Word, Long> {
     @Query("UPDATE Word w SET w.elo = w.elo + :points WHERE w.lastAnsweredDate < :date")
     void increaseElo(int points,LocalDateTime date);
 
-    @Query(value = "SELECT * FROM words WHERE elo > 0 ORDER BY RAND() LIMIT :count", nativeQuery = true)
-    List<Word> findRandomWords(@Param("count") int count);
+    @Query(value = "SELECT * FROM words WHERE elo > 0 AND last_answered_date < :date ORDER BY RAND() LIMIT :count", nativeQuery = true)
+    List<Word> findRandomWords(@Param("count") int count , @Param("date") LocalDateTime date);
 
     Boolean existsByUserAndTr(User user, String tr);
 }

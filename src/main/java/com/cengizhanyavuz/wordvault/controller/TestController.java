@@ -34,7 +34,7 @@ public class TestController {
     }
 
     @PostMapping("/global/finish")
-    public ResponseEntity<TestResultDto> finishGlobalTest(@RequestBody TestFinishRequestDto testFinishRequestDto) {
+    public ResponseEntity<TestResultDto> finishGlobalTest(@Valid @RequestBody TestFinishRequestDto testFinishRequestDto) {
         return ResponseEntity.ok(service.finishGlobalTest(testFinishRequestDto));
     }
 }
