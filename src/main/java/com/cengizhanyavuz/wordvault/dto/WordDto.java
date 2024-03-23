@@ -2,8 +2,6 @@ package com.cengizhanyavuz.wordvault.dto;
 
 import com.cengizhanyavuz.wordvault.model.Word;
 
-import java.time.LocalDateTime;
-
 public record WordDto(
         Long id,
         String tr,
@@ -11,7 +9,7 @@ public record WordDto(
         String it,
         String alm,
         Integer elo,
-        LocalDateTime lastAnsweredDate
+        Boolean isApproved
 ) {
     public static WordDto convert(Word word) {
         return new WordDto(
@@ -21,7 +19,7 @@ public record WordDto(
                 word.getIt(),
                 word.getAlm(),
                 word.getElo(),
-                word.getLastAnsweredDate()
+                word.getIsApproved()
         );
     }
 }

@@ -31,5 +31,5 @@ public class Word {
     private String it;
     private String alm;
     private Integer elo = WORD_POINT;
-    private LocalDateTime lastAnsweredDate = null;
+    private Boolean isApproved = true; // true for testing
 }

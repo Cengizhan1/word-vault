@@ -57,6 +57,5 @@ public class TestWordService {
     @Async
     private void updateEloOfWord(Word word, int point) {
         word.setElo(word.getElo() + point);
-        word.setLastAnsweredDate(LocalDateTime.now());
     }
 }

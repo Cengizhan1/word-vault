@@ -31,7 +31,7 @@ public class WordService {
     }
 
     public List<WordDto> getAllWords() {
-        return wordRepository.findAll()
+        return wordRepository.findAllByIsApprovedTrue()
                 .stream()
                 .map(WordDto::convert)
                 .toList();
@@ -39,12 +39,11 @@ public class WordService {
 
     private void checkWordExists(String tr) {
         if (wordRepository.existsByTr(tr)) {
-            throw new WordExistsException("Word already exists by this user");
+            throw new WordExistsException("Word already exists");
         }
     }
 
     public WordDto createWord(WordCreateRequest request) {
-        User user = userService.getCurrentUser();
         checkWordExists(request.tr());
         Word word = new Word();
         word.setTr(request.tr());
@@ -58,20 +57,11 @@ public class WordService {
         return WordDto.convert(getWordById(id));
     }
 
-    public WordDto updateWordTranslation(WordUpdateRequest request) {
-        Word word = getWordById(request.id());
-        word.setTr(request.tr());
-        word.setEn(request.en());
-        word.setIt(request.it());
-        word.setAlm(request.alm());
-        return WordDto.convert(wordRepository.save(word));
-    }
-
-    @Scheduled(fixedRate = 24 * 60 * 30)
-    public void updateEloByLastAnsweredDate() {
-        wordRepository.increaseElo(WORD_POINTS_TO_INCREASED, LocalDateTime.now().minusDays(
-                MAX_DAY_COUNT_FOR_UPDATE_WORD));
-    }
+//    @Scheduled(fixedRate = 24 * 60 * 30)
+//    public void updateEloByLastAnsweredDate() {
+//        wordRepository.increaseElo(WORD_POINTS_TO_INCREASED, LocalDateTime.now().minusDays(
+//                MAX_DAY_COUNT_FOR_UPDATE_WORD));
+//    }
 
     public List<Word> getWords() throws InsufficientWordsException {
         List<Word> words = wordRepository.findRandomWords(TEST_WORD_COUNT, LocalDateTime.now().minusDays(1));

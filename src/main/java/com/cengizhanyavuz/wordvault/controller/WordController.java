@@ -32,9 +32,4 @@ public class WordController {
     public ResponseEntity<WordDto> getWordById(@PathVariable Long id){
         return ResponseEntity.ok(service.findWordById(id));
     }
-
-    @PutMapping
-    public ResponseEntity<WordDto> updateWord(@RequestBody WordUpdateRequest request){
-        return ResponseEntity.ok(service.updateWordTranslation(request));
-    }
 }
