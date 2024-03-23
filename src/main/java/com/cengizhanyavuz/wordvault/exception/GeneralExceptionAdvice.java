@@ -71,4 +71,9 @@ public class GeneralExceptionAdvice extends ResponseEntityExceptionHandler {
     public ResponseEntity<?> handle(InsufficientWordsException exception) {
         return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);
     }
+
+    @ExceptionHandler(WorldAlreadyApprovedException.class)
+    public ResponseEntity<?> handle(WorldAlreadyApprovedException exception) {
+        return new ResponseEntity<>(exception.getMessage(), HttpStatus.CONFLICT);
+    }
 }

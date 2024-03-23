@@ -26,4 +26,6 @@ public interface WordRepository extends JpaRepository<Word, Long> {
     Boolean existsByTr(String tr);
 
     List<Word> findAllByIsApprovedTrue();
+
+    Optional<Word> findRandomWordByIsApprovedFalse();
 }

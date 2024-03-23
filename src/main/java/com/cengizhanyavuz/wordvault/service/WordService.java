@@ -6,6 +6,7 @@ import com.cengizhanyavuz.wordvault.dto.request.WordUpdateRequest;
 import com.cengizhanyavuz.wordvault.exception.InsufficientWordsException;
 import com.cengizhanyavuz.wordvault.exception.WordExistsException;
 import com.cengizhanyavuz.wordvault.exception.WordNotFoundException;
+import com.cengizhanyavuz.wordvault.exception.WorldAlreadyApprovedException;
 import com.cengizhanyavuz.wordvault.model.Word;
 import com.cengizhanyavuz.wordvault.model.user.User;
 import com.cengizhanyavuz.wordvault.repository.WordRepository;
@@ -22,12 +23,10 @@ import java.util.List;
 public class WordService {
 
     private final WordRepository wordRepository;
-    private final UserService userService;
 
 
-    public WordService(WordRepository wordRepository, UserService userService) {
+    public WordService(WordRepository wordRepository) {
         this.wordRepository = wordRepository;
-        this.userService = userService;
     }
 
     public List<WordDto> getAllWords() {
@@ -71,6 +70,20 @@ public class WordService {
             throw new InsufficientWordsException();
         }
         return words;
+    }
+
+    public WordDto getRandomIsNotApprovedWord() {
+        return WordDto.convert(wordRepository.findRandomWordByIsApprovedFalse().orElseThrow(
+                () -> new WordNotFoundException("Word not found by isApproved = false")
+        ));
+    }
+    public WordDto setWordAsApproved(Long id) {
+        Word word = getWordById(id);
+        if (word.getIsApproved()) {
+            throw new WorldAlreadyApprovedException("Word already approved");
+        }
+        word.setIsApproved(true);
+        return WordDto.convert(wordRepository.save(word));
     }
 
 

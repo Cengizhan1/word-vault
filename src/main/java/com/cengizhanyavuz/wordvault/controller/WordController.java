@@ -32,4 +32,15 @@ public class WordController {
     public ResponseEntity<WordDto> getWordById(@PathVariable Long id){
         return ResponseEntity.ok(service.findWordById(id));
     }
+
+    @GetMapping("/getRandomIsNotApproved")
+    public ResponseEntity<WordDto> getRandomIsNotApprovedWord(){
+        return ResponseEntity.ok(service.getRandomIsNotApprovedWord());
+    }
+
+    @PutMapping("/setApproved/{id}")
+    public ResponseEntity<WordDto> setApproved(@PathVariable Long id){
+        return ResponseEntity.ok(service.setWordAsApproved(id));
+    }
+
 }
