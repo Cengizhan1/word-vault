@@ -1,7 +1,6 @@
 package com.cengizhanyavuz.wordvault.model.test;
 
 
-import com.cengizhanyavuz.wordvault.model.GlobalWord;
 import com.cengizhanyavuz.wordvault.model.Word;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -33,9 +32,4 @@ public class TestWord {
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "word_id")
     private Word word;
-
-
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "global_word_id")
-    private GlobalWord globalWord;
 }

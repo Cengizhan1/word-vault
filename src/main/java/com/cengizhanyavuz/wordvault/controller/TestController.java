@@ -18,23 +18,13 @@ public class TestController {
         this.service = service;
     }
 
-    @GetMapping("/personal/start")
-    public ResponseEntity<TestStartDto> startPersonalTest() {
-        return ResponseEntity.ok(service.startPersonalTest());
+    @GetMapping("/start")
+    public ResponseEntity<TestStartDto> startTest() {
+        return ResponseEntity.ok(service.startTest());
     }
 
-    @PostMapping("/personal/finish")
-    public ResponseEntity<TestResultDto> finishPersonalTest(@Valid @RequestBody TestFinishRequestDto testFinishRequestDto) {
-        return ResponseEntity.ok(service.finishPersonalTest(testFinishRequestDto));
-    }
-
-    @GetMapping("/global/start")
-    public ResponseEntity<TestStartDto> startGlobalTest() {
-        return ResponseEntity.ok(service.startGlobalTest());
-    }
-
-    @PostMapping("/global/finish")
-    public ResponseEntity<TestResultDto> finishGlobalTest(@Valid @RequestBody TestFinishRequestDto testFinishRequestDto) {
-        return ResponseEntity.ok(service.finishGlobalTest(testFinishRequestDto));
+    @PostMapping("/finish")
+    public ResponseEntity<TestResultDto> finishTest(@Valid @RequestBody TestFinishRequestDto testFinishRequestDto) {
+        return ResponseEntity.ok(service.finishTest(testFinishRequestDto));
     }
 }

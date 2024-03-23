@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 @Service
@@ -31,7 +30,7 @@ public class TestService {
         this.userService = userService;
     }
 
-    public TestStartDto startPersonalTest() {
+    public TestStartDto startTest() {
         checkCurrentTest();
         Test test = new Test();
         test.setUser(userService.getCurrentUser());
@@ -40,22 +39,7 @@ public class TestService {
         return new TestStartDto(words.stream().map(TestWord::getQuestion).toList());
     }
 
-
-    public TestResultDto finishPersonalTest(TestFinishRequestDto testFinishRequestDto) {
-        return getTestResultDto(testFinishRequestDto);
-    }
-
-    public TestStartDto startGlobalTest() {
-        checkCurrentTest();
-        Test test = new Test();
-        test.setUser(userService.getCurrentUser());
-        testRepository.save(test);
-        List<TestWord> words = testWordService.getGlobalWords(test);
-        return new TestStartDto(words.stream().map(TestWord::getQuestion).toList());
-    }
-
-
-    public TestResultDto finishGlobalTest(TestFinishRequestDto testFinishRequestDto) {
+    public TestResultDto finishTest(TestFinishRequestDto testFinishRequestDto) {
         return getTestResultDto(testFinishRequestDto);
     }
 

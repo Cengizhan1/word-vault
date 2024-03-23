@@ -16,8 +16,6 @@ public class PointConstants {
     public static final int USER_POINTS_TO_INCREASED = 1;
     public static final int WORD_POINTS_TO_DECREASED = -20;
     public static final int WORD_POINTS_TO_INCREASED = 20;
-    public static final int GLOBAL_WORD_POINTS_TO_DECREASED = -1;
-    public static final int GLOBAL_WORD_POINTS_TO_INCREASED = 1;
 
     // Maximum number of days required to update the word's elo
     public static final int MAX_DAY_COUNT_FOR_UPDATE_WORD = 15;
