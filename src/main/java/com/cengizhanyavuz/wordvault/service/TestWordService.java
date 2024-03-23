@@ -7,6 +7,7 @@ import com.cengizhanyavuz.wordvault.repository.TestWordRepository;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -56,5 +57,6 @@ public class TestWordService {
     @Async
     private void updateEloOfWord(Word word, int point) {
         word.setElo(word.getElo() + point);
+        word.setLastAnsweredDate(LocalDateTime.now());
     }
 }

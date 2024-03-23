@@ -31,23 +31,22 @@ public class WordService {
     }
 
     public List<WordDto> getAllWords() {
-        return wordRepository.findAllByUser(userService.getCurrentUser())
+        return wordRepository.findAll()
                 .stream()
                 .map(WordDto::convert)
                 .toList();
     }
 
-    private void checkWordExists(User user, String tr) {
-        if (wordRepository.existsByUserAndTr(user, tr)) {
+    private void checkWordExists(String tr) {
+        if (wordRepository.existsByTr(tr)) {
             throw new WordExistsException("Word already exists by this user");
         }
     }
 
     public WordDto createWord(WordCreateRequest request) {
         User user = userService.getCurrentUser();
-        checkWordExists(user, request.tr());
+        checkWordExists(request.tr());
         Word word = new Word();
-        word.setUser(user);
         word.setTr(request.tr());
         word.setEn(request.en());
         word.setIt(request.it());
@@ -76,6 +75,8 @@ public class WordService {
 
     public List<Word> getWords() throws InsufficientWordsException {
         List<Word> words = wordRepository.findRandomWords(TEST_WORD_COUNT, LocalDateTime.now().minusDays(1));
+        System.out.println(words.size() != TEST_WORD_COUNT);
+        System.out.println(words.size() + " " + TEST_WORD_COUNT);
         if (words.size() != TEST_WORD_COUNT) {
             throw new InsufficientWordsException();
         }

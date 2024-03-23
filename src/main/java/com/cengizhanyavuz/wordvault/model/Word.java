@@ -31,9 +31,5 @@ public class Word {
     private String it;
     private String alm;
     private Integer elo = WORD_POINT;
-    private LocalDateTime lastAnsweredDate = LocalDateTime.now();
-
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id")
-    private User user;
+    private LocalDateTime lastAnsweredDate = null;
 }

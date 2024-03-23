@@ -34,8 +34,8 @@ public class TestService {
         checkCurrentTest();
         Test test = new Test();
         test.setUser(userService.getCurrentUser());
-        testRepository.save(test);
         List<TestWord> words = testWordService.getWords(test);
+        testRepository.save(test);
         return new TestStartDto(words.stream().map(TestWord::getQuestion).toList());
     }
 
