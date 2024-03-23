@@ -63,7 +63,7 @@ public class WordService {
 //    }
 
     public List<Word> getWords() throws InsufficientWordsException {
-        List<Word> words = wordRepository.findRandomWords(TEST_WORD_COUNT, LocalDateTime.now().minusDays(1));
+        List<Word> words = wordRepository.findRandomWords(TEST_WORD_COUNT);
         System.out.println(words.size() != TEST_WORD_COUNT);
         System.out.println(words.size() + " " + TEST_WORD_COUNT);
         if (words.size() != TEST_WORD_COUNT) {
