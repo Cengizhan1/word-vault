@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 public class PointConstants {
 
     //Initial points to be assigned to users
-    public static final int USER_POINT = 100;
+    public static final Integer USER_POINT = 100;
     //Initial points to be assigned to words+
     public static final int WORD_POINT = 100;
 

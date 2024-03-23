@@ -22,6 +22,8 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 
+import static com.cengizhanyavuz.wordvault.constants.PointConstants.USER_POINT;
+
 @Service
 @RequiredArgsConstructor
 public class AuthenticationService {
@@ -44,6 +46,7 @@ public class AuthenticationService {
                 .age(request.age())
                 .gender(request.gender())
                 .role(Role.ROLE_USER)
+                .elo(USER_POINT)
                 .build();
         var savedUser = repository.save(user);
         var jwtToken = jwtService.generateToken(user);
