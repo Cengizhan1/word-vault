@@ -22,6 +22,7 @@ public interface WordRepository extends JpaRepository<Word, Long> {
 //    void increaseElo(int points,LocalDateTime date);
 
     @Query(value = "SELECT * FROM words " +
+            "WHERE is_approved = true " +
             "ORDER BY RAND() * " +
             "(CASE " +
             "    WHEN elo = :userElo THEN 1 " +
