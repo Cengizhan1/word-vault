@@ -2,31 +2,29 @@ package com.cengizhanyavuz.wordvault.service;
 
 import com.cengizhanyavuz.wordvault.dto.WordDto;
 import com.cengizhanyavuz.wordvault.dto.request.WordCreateRequest;
-import com.cengizhanyavuz.wordvault.dto.request.WordUpdateRequest;
 import com.cengizhanyavuz.wordvault.exception.InsufficientWordsException;
 import com.cengizhanyavuz.wordvault.exception.WordExistsException;
 import com.cengizhanyavuz.wordvault.exception.WordNotFoundException;
 import com.cengizhanyavuz.wordvault.exception.WorldAlreadyApprovedException;
 import com.cengizhanyavuz.wordvault.model.Word;
-import com.cengizhanyavuz.wordvault.model.user.User;
 import com.cengizhanyavuz.wordvault.repository.WordRepository;
 import org.springframework.scheduling.annotation.Async;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import static com.cengizhanyavuz.wordvault.constants.PointConstants.*;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
 public class WordService {
 
     private final WordRepository wordRepository;
+    private final UserService userService;
 
 
-    public WordService(WordRepository wordRepository) {
+    public WordService(WordRepository wordRepository, UserService userService) {
         this.wordRepository = wordRepository;
+        this.userService = userService;
     }
 
     public List<WordDto> getAllWords() {
@@ -63,9 +61,7 @@ public class WordService {
 //    }
 
     public List<Word> getWords() throws InsufficientWordsException {
-        List<Word> words = wordRepository.findRandomWords(TEST_WORD_COUNT);
-        System.out.println(words.size() != TEST_WORD_COUNT);
-        System.out.println(words.size() + " " + TEST_WORD_COUNT);
+        List<Word> words = wordRepository.findRandomWords(TEST_WORD_COUNT, userService.getUser().elo());
         if (words.size() != TEST_WORD_COUNT) {
             throw new InsufficientWordsException();
         }
