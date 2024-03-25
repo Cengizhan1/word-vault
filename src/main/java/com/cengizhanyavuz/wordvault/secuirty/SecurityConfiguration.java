@@ -30,6 +30,7 @@ public class SecurityConfiguration {
                 .disable()
                 .authorizeHttpRequests()
                 .requestMatchers(
+                        "/websocket/**",
                         "/v1/api/auth/**",
                         "/swagger-resources",
                         "/swagger-resources/**",
