@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public record TestFinishRequestDto(
-        @Size(min = 10, max = 10,message = "Size of answers must be 10")
+        @Size(min = 5, max = 5,message = "Size of answers must be 5")
         List<String> answers
 ) {
 }
