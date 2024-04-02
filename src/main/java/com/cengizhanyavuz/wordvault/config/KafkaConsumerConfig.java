@@ -1,6 +1,6 @@
 package com.cengizhanyavuz.wordvault.config;
 
-import com.cengizhanyavuz.wordvault.dto.request.kafka.PropertyListener;
+import com.cengizhanyavuz.wordvault.dto.WordDto;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.AllArgsConstructor;
@@ -28,7 +28,7 @@ public class KafkaConsumerConfig {
     private String kafkaBootstrap = "localhost:29092";
 
     @Bean
-    public ConsumerFactory<String, PropertyListener> comsumerFactory()
+    public ConsumerFactory<String, WordDto> comsumerFactory()
 
     {
         Map<String, Object> config = new HashMap<>();
@@ -44,19 +44,19 @@ public class KafkaConsumerConfig {
 
     @Bean
 
-    public ConcurrentKafkaListenerContainerFactory<String, PropertyListener> kafkaListenerDebezium() {
+    public ConcurrentKafkaListenerContainerFactory<String, WordDto> kafkaListenerDebezium() {
 
-        ConcurrentKafkaListenerContainerFactory<String, PropertyListener> factory = new ConcurrentKafkaListenerContainerFactory<>();
+        ConcurrentKafkaListenerContainerFactory<String, WordDto> factory = new ConcurrentKafkaListenerContainerFactory<>();
         factory.setConsumerFactory(comsumerFactory());
         return factory;
 
     }
-    private JsonDeserializer<PropertyListener> customizedJsonDeserializer() {
+    private JsonDeserializer<WordDto> customizedJsonDeserializer() {
 
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
-        JsonDeserializer<PropertyListener> deserializer = new JsonDeserializer<>(PropertyListener.class, objectMapper);
+        JsonDeserializer<WordDto> deserializer = new JsonDeserializer<>(WordDto.class, objectMapper);
         deserializer.setRemoveTypeHeaders(false);
         deserializer.addTrustedPackages("*");
         deserializer.setUseTypeMapperForKey(true);
