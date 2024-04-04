@@ -2,7 +2,7 @@ package com.cengizhanyavuz.wordvault.service;
 
 
 import com.cengizhanyavuz.wordvault.dto.WordDto;
-import com.cengizhanyavuz.wordvault.dto.request.kafka.PropertyListener;
+import com.cengizhanyavuz.wordvault.dto.request.kafka.WordListener;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.messaging.handler.annotation.Payload;
@@ -12,10 +12,11 @@ import org.springframework.stereotype.Service;
 @Slf4j
 public class DebeziumListener {
 
-    @KafkaListener(topics = "words-kafka.word-vault-db.words", containerFactory = "kafkaListenerDebezium", groupId = "kafkaListenerDebezium")
-    public void debeziumListener(@Payload(required = false) WordDto message) {
+    @KafkaListener(topics = "words-kafka.word-vault-db.words", containerFactory = "kafkaListenerDebezium", groupId = "word-vault-consumer-group")
+    public void debeziumListener(@Payload(required = false) WordListener word) {
         try {
-            log.info("Message received: " + message.toString());
+            log.info("Message received before: " + word.getPayload().getBefore());
+            log.info("Message received after: " + word.getPayload().getAfter());
         } catch (Exception e) {
             log.error(e.getMessage());
         }

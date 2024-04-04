@@ -1,6 +1,6 @@
 package com.cengizhanyavuz.wordvault.config;
 
-import com.cengizhanyavuz.wordvault.dto.WordDto;
+import com.cengizhanyavuz.wordvault.dto.request.kafka.WordListener;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.AllArgsConstructor;
@@ -28,13 +28,13 @@ public class KafkaConsumerConfig {
     private String kafkaBootstrap = "localhost:29092";
 
     @Bean
-    public ConsumerFactory<String, WordDto> comsumerFactory()
+    public ConsumerFactory<String, WordListener> consumerFactory()
 
     {
         Map<String, Object> config = new HashMap<>();
 
         config.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, kafkaBootstrap);
-        config.put(ConsumerConfig.GROUP_ID_CONFIG, "comsumerFactory");
+        config.put(ConsumerConfig.GROUP_ID_CONFIG, "word-vault-consumer-group");
         config.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, true);
         config.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, customizedJsonDeserializer());
 
@@ -43,20 +43,17 @@ public class KafkaConsumerConfig {
     }
 
     @Bean
-
-    public ConcurrentKafkaListenerContainerFactory<String, WordDto> kafkaListenerDebezium() {
-
-        ConcurrentKafkaListenerContainerFactory<String, WordDto> factory = new ConcurrentKafkaListenerContainerFactory<>();
-        factory.setConsumerFactory(comsumerFactory());
+    public ConcurrentKafkaListenerContainerFactory<String, WordListener> kafkaListenerDebezium() {
+        ConcurrentKafkaListenerContainerFactory<String, WordListener> factory = new ConcurrentKafkaListenerContainerFactory<>();
+        factory.setConsumerFactory(consumerFactory());
         return factory;
-
     }
-    private JsonDeserializer<WordDto> customizedJsonDeserializer() {
+    private JsonDeserializer<WordListener> customizedJsonDeserializer() {
 
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
-        JsonDeserializer<WordDto> deserializer = new JsonDeserializer<>(WordDto.class, objectMapper);
+        JsonDeserializer<WordListener> deserializer = new JsonDeserializer<>(WordListener.class, objectMapper);
         deserializer.setRemoveTypeHeaders(false);
         deserializer.addTrustedPackages("*");
         deserializer.setUseTypeMapperForKey(true);

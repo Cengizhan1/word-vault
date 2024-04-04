@@ -3,7 +3,7 @@ package com.cengizhanyavuz.wordvault.dto.request.kafka;
 import lombok.Data;
 
 @Data
-public class PropertyListener {
+public class WordListener {
 
-    private PropertyPayload payload;
+    private WordPayload payload;
 }
