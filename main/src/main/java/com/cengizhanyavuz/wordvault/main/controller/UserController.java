@@ -1,8 +1,9 @@
 package com.cengizhanyavuz.wordvault.main.controller;
 
-import com.cengizhanyavuz.wordvault.main.dto.UserDto;
-import com.cengizhanyavuz.wordvault.main.dto.request.UserUpdateRequest;
-import com.cengizhanyavuz.wordvault.main.service.UserService;
+
+import com.cengizhanyavuz.wordvault.user.dto.UserDto;
+import com.cengizhanyavuz.wordvault.user.dto.UserUpdateRequest;
+import com.cengizhanyavuz.wordvault.user.service.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

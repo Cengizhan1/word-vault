@@ -1,6 +1,6 @@
-package com.cengizhanyavuz.wordvault.main.repository;
+package com.cengizhanyavuz.wordvault.quiz.repository;
 
-import com.cengizhanyavuz.wordvault.main.model.test.TestWord;
+import com.cengizhanyavuz.wordvault.quiz.model.TestWord;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

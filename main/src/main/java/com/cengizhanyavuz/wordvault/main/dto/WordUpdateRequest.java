@@ -1,4 +1,4 @@
-package com.cengizhanyavuz.wordvault.main.dto.request;
+package com.cengizhanyavuz.wordvault.main.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

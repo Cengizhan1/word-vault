@@ -1,7 +1,7 @@
 package com.cengizhanyavuz.wordvault.main.controller;
 
 import com.cengizhanyavuz.wordvault.main.dto.WordDto;
-import com.cengizhanyavuz.wordvault.main.dto.request.WordCreateRequest;
+import com.cengizhanyavuz.wordvault.main.dto.WordCreateRequest;
 import com.cengizhanyavuz.wordvault.main.service.WordService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

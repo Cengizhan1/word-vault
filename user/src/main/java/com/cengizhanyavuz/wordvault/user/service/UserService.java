@@ -2,7 +2,7 @@ package com.cengizhanyavuz.wordvault.user.service;
 
 import com.cengizhanyavuz.wordvault.user.dto.UserDto;
 import com.cengizhanyavuz.wordvault.user.dto.UserUpdateRequest;
-import com.cengizhanyavuz.wordvault.main.exception.UsernameAlreadyExistsException;
+import com.cengizhanyavuz.wordvault.user.exception.UsernameAlreadyExistsException;
 import com.cengizhanyavuz.wordvault.user.model.User;
 import com.cengizhanyavuz.wordvault.user.repository.UserRepository;
 import org.springframework.scheduling.annotation.Async;
@@ -11,8 +11,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import static com.cengizhanyavuz.wordvault.main.constants.PointConstants.*;
-import static com.cengizhanyavuz.wordvault.main.constants.PointConstants.USER_POINTS_TO_INCREASED;
+import static com.cengizhanyavuz.wordvault.user.config.PointConstants.USER_POINTS_TO_INCREASED;
+
 
 @Service
 public class UserService {
@@ -42,12 +42,12 @@ public class UserService {
 
     // Protected methods
     @Async
-    protected void updateUserElo(int correctAnswers, int wrongAnswers,User user) {
+    public void updateUserElo(int correctAnswers, int wrongAnswers, User user) {
         user.setElo(user.getElo() + ((correctAnswers - wrongAnswers) * USER_POINTS_TO_INCREASED));
         userRepository.save(user);
     }
 
-    protected User getCurrentUser() {
+    public User getCurrentUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         return userRepository.findByUsername(authentication.getName()).orElseThrow((
                 () -> new UsernameNotFoundException("User not found with username: " + getCurrentUser().getUsername()))

@@ -1,15 +1,16 @@
-package com.cengizhanyavuz.wordvault.main.service;
+package com.cengizhanyavuz.wordvault.quiz.service;
 
-import com.cengizhanyavuz.wordvault.main.dto.test.TestResultDto;
-import com.cengizhanyavuz.wordvault.main.dto.test.TestStartDto;
-import com.cengizhanyavuz.wordvault.main.dto.test.TestFinishRequestDto;
+import com.cengizhanyavuz.wordvault.quiz.dto.TestFinishRequestDto;
+import com.cengizhanyavuz.wordvault.quiz.dto.TestResultDto;
+import com.cengizhanyavuz.wordvault.quiz.dto.TestStartDto;
 import com.cengizhanyavuz.wordvault.main.exception.ActiveTestAlreadyExistsException;
 import com.cengizhanyavuz.wordvault.main.exception.TestNotFoundException;
-import com.cengizhanyavuz.wordvault.main.model.test.Test;
-import com.cengizhanyavuz.wordvault.main.model.test.TestState;
-import com.cengizhanyavuz.wordvault.main.model.test.TestWord;
-import com.cengizhanyavuz.wordvault.main.model.user.User;
-import com.cengizhanyavuz.wordvault.main.repository.TestRepository;
+import com.cengizhanyavuz.wordvault.quiz.model.Test;
+import com.cengizhanyavuz.wordvault.quiz.model.TestState;
+import com.cengizhanyavuz.wordvault.quiz.model.TestWord;
+import com.cengizhanyavuz.wordvault.quiz.repository.TestRepository;
+import com.cengizhanyavuz.wordvault.user.model.User;
+import com.cengizhanyavuz.wordvault.user.service.UserService;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;

@@ -1,9 +1,9 @@
-package com.cengizhanyavuz.wordvault.main.repository;
+package com.cengizhanyavuz.wordvault.quiz.repository;
 
 
-import com.cengizhanyavuz.wordvault.main.model.test.Test;
-import com.cengizhanyavuz.wordvault.main.model.test.TestState;
-import com.cengizhanyavuz.wordvault.main.model.user.User;
+import com.cengizhanyavuz.wordvault.quiz.model.Test;
+import com.cengizhanyavuz.wordvault.quiz.model.TestState;
+import com.cengizhanyavuz.wordvault.user.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

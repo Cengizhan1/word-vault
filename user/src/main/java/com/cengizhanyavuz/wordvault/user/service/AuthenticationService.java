@@ -3,7 +3,7 @@ package com.cengizhanyavuz.wordvault.user.service;
 import com.cengizhanyavuz.wordvault.user.dto.LoginRequest;
 import com.cengizhanyavuz.wordvault.user.dto.RegisterRequest;
 import com.cengizhanyavuz.wordvault.user.dto.AuthenticationResponse;
-import com.cengizhanyavuz.wordvault.main.exception.UsernameAlreadyExistsException;
+import com.cengizhanyavuz.wordvault.user.exception.UsernameAlreadyExistsException;
 import com.cengizhanyavuz.wordvault.user.model.Role;
 import com.cengizhanyavuz.wordvault.user.model.Token;
 import com.cengizhanyavuz.wordvault.user.model.User;
@@ -18,10 +18,10 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
 import java.io.IOException;
 
-import static com.cengizhanyavuz.wordvault.main.constants.PointConstants.USER_POINT;
+import static com.cengizhanyavuz.wordvault.user.config.PointConstants.USER_POINT;
+
 
 @Service
 @RequiredArgsConstructor

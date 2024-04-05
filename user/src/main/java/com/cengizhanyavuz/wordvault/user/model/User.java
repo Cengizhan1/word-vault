@@ -9,7 +9,8 @@ import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
-import static com.cengizhanyavuz.wordvault.main.constants.PointConstants.*;
+
+import static com.cengizhanyavuz.wordvault.user.config.PointConstants.USER_POINT;
 
 
 @Data

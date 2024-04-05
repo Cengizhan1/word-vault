@@ -1,4 +1,4 @@
-package com.cengizhanyavuz.wordvault.main.model.test;
+package com.cengizhanyavuz.wordvault.quiz.model;
 
 
 import com.cengizhanyavuz.wordvault.main.model.Word;

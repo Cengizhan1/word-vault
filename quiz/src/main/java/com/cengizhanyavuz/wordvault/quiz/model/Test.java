@@ -1,7 +1,7 @@
-package com.cengizhanyavuz.wordvault.main.model.test;
+package com.cengizhanyavuz.wordvault.quiz.model;
 
 
-import com.cengizhanyavuz.wordvault.main.model.user.User;
+import com.cengizhanyavuz.wordvault.user.model.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;

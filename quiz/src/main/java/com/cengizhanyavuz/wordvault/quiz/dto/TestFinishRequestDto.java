@@ -1,9 +1,7 @@
-package com.cengizhanyavuz.wordvault.main.dto.test;
+package com.cengizhanyavuz.wordvault.quiz.dto;
 
-import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 public record TestFinishRequestDto(

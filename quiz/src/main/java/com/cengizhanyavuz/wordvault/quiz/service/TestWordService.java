@@ -1,9 +1,10 @@
-package com.cengizhanyavuz.wordvault.main.service;
+package com.cengizhanyavuz.wordvault.quiz.service;
 
 import com.cengizhanyavuz.wordvault.main.model.Word;
-import com.cengizhanyavuz.wordvault.main.model.test.Test;
-import com.cengizhanyavuz.wordvault.main.model.test.TestWord;
-import com.cengizhanyavuz.wordvault.main.repository.TestWordRepository;
+import com.cengizhanyavuz.wordvault.main.service.WordService;
+import com.cengizhanyavuz.wordvault.quiz.model.Test;
+import com.cengizhanyavuz.wordvault.quiz.model.TestWord;
+import com.cengizhanyavuz.wordvault.quiz.repository.TestWordRepository;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
@@ -54,7 +55,7 @@ public class TestWordService {
     }
 
     @Async
-    private void updateEloOfWord(Word word, int point) {
+    protected void updateEloOfWord(Word word, int point) {
         word.setElo(word.getElo() + point);
     }
 }

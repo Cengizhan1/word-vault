@@ -1,17 +1,18 @@
 package com.cengizhanyavuz.wordvault.main.service;
 
 import com.cengizhanyavuz.wordvault.main.dto.WordDto;
-import com.cengizhanyavuz.wordvault.main.dto.request.WordCreateRequest;
+import com.cengizhanyavuz.wordvault.main.dto.WordCreateRequest;
 import com.cengizhanyavuz.wordvault.main.exception.InsufficientWordsException;
 import com.cengizhanyavuz.wordvault.main.exception.WordExistsException;
 import com.cengizhanyavuz.wordvault.main.exception.WordNotFoundException;
 import com.cengizhanyavuz.wordvault.main.exception.WorldAlreadyApprovedException;
 import com.cengizhanyavuz.wordvault.main.model.Word;
 import com.cengizhanyavuz.wordvault.main.repository.WordRepository;
+import com.cengizhanyavuz.wordvault.user.service.UserService;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
-import static com.cengizhanyavuz.wordvault.main.constants.PointConstants.*;
+import static com.cengizhanyavuz.wordvault.main.config.PointConstants.*;
 
 import java.util.List;
 
@@ -90,7 +91,7 @@ public class WordService {
     }
 
     @Async
-    protected void saveAll(List<Word> words) {
+    public void saveAll(List<Word> words) {
         wordRepository.saveAll(words);
     }
 }

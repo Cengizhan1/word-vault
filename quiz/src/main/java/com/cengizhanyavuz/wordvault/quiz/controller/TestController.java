@@ -1,9 +1,9 @@
-package com.cengizhanyavuz.wordvault.main.controller;
+package com.cengizhanyavuz.wordvault.quiz.controller;
 
-import com.cengizhanyavuz.wordvault.main.dto.test.TestFinishRequestDto;
-import com.cengizhanyavuz.wordvault.main.dto.test.TestResultDto;
-import com.cengizhanyavuz.wordvault.main.dto.test.TestStartDto;
-import com.cengizhanyavuz.wordvault.main.service.TestService;
+import com.cengizhanyavuz.wordvault.quiz.dto.TestFinishRequestDto;
+import com.cengizhanyavuz.wordvault.quiz.dto.TestResultDto;
+import com.cengizhanyavuz.wordvault.quiz.dto.TestStartDto;
+import com.cengizhanyavuz.wordvault.quiz.service.TestService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
