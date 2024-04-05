@@ -14,7 +14,6 @@ public class DebeziumListener {
     @KafkaListener(topics = "words-kafka.word-vault-db.words", containerFactory = "kafkaListenerDebezium", groupId = "word-vault-consumer-group")
     public void debeziumListener(@Payload(required = false) WordListener word) {
         try {
-            log.info("Message received before: " + word.getPayload().getBefore());
             log.info("Message received after: " + word.getPayload().getAfter());
         } catch (Exception e) {
             log.error(e.getMessage());

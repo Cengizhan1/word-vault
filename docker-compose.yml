@@ -41,7 +41,7 @@ services:
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_INTERNAL:PLAINTEXT
       KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092,PLAINTEXT_INTERNAL://localhost:29092
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
-  
+
   kafka-ui:
     container_name: kafka-ui
     image: provectuslabs/kafka-ui:latest
@@ -54,7 +54,7 @@ services:
       KAFKA_CLUSTERS_0_NAME: debezium-kafka-ui
       KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka:9092
       KAFKA_CLUSTERS_0_ZOOKEEPER: zookeeper:2181
-  
+
   debezium:
     image: debezium/connect:latest
     container_name: debezium
@@ -66,6 +66,14 @@ services:
       OFFSET_STORAGE_TOPIC: debezium-offset
       STATUS_STORAGE_TOPIC: debezium-status
       BOOTSTRAP_SERVERS: kafka:9092
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.15.1
+    container_name: elasticsearch
+    ports:
+      - "9200:9200"
+    environment:
+      - discovery.type=single-node
 
 volumes:
   mysql-data:

@@ -7,8 +7,8 @@ import org.springframework.data.elasticsearch.client.elc.ElasticsearchConfigurat
 import org.springframework.data.elasticsearch.repository.config.EnableElasticsearchRepositories;
 
 @Configuration
-@EnableElasticsearchRepositories(basePackages = "com.cengizhanyavuz.wordvault.repo")
-@ComponentScan("com.cengizhanyavuz.wordvault")
+@EnableElasticsearchRepositories(basePackages = "com.cengizhanyavuz.wordvault.kafka.to.elastic.repo")
+@ComponentScan("com.cengizhanyavuz.wordvault.kafka.to.elastic")
 public class Config extends ElasticsearchConfiguration {
     private final ElasticConfigData elasticConfigData;
 
