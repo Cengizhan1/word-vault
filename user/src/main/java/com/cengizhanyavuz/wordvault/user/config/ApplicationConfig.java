@@ -1,6 +1,6 @@
-package com.cengizhanyavuz.wordvault.main.config;
+package com.cengizhanyavuz.wordvault.user.config;
 
-import com.cengizhanyavuz.wordvault.main.repository.UserRepository;
+import com.cengizhanyavuz.wordvault.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

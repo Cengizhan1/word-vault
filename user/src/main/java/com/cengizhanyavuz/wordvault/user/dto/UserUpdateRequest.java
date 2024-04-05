@@ -1,6 +1,6 @@
-package com.cengizhanyavuz.wordvault.main.dto.request;
+package com.cengizhanyavuz.wordvault.user.dto;
 
-import com.cengizhanyavuz.wordvault.main.model.user.Gender;
+import com.cengizhanyavuz.wordvault.user.model.Gender;
 
 public record UserUpdateRequest(
         String name,

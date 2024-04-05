@@ -1,4 +1,4 @@
-package com.cengizhanyavuz.wordvault.main.service.auth;
+package com.cengizhanyavuz.wordvault.user.service;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

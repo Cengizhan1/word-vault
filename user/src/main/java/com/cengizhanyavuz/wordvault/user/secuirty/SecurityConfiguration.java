@@ -1,4 +1,4 @@
-package com.cengizhanyavuz.wordvault.main.secuirty;
+package com.cengizhanyavuz.wordvault.user.secuirty;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;

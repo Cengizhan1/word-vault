@@ -1,7 +1,7 @@
-package com.cengizhanyavuz.wordvault.main.secuirty;
+package com.cengizhanyavuz.wordvault.user.secuirty;
 
-import com.cengizhanyavuz.wordvault.main.service.auth.JwtService;
-import com.cengizhanyavuz.wordvault.main.repository.TokenRepository;
+import com.cengizhanyavuz.wordvault.user.repository.TokenRepository;
+import com.cengizhanyavuz.wordvault.user.service.JwtService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
