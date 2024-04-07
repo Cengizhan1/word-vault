@@ -11,12 +11,26 @@
 
     <artifactId>main</artifactId>
 
+    <properties>
+        <java.version>17</java.version>
+        <jwt.version>0.11.5</jwt.version>
+        <mysql-version>8.0.33</mysql-version>
+        <elastic.version>7.17.4</elastic.version>
+    </properties>
+
     <dependencies>
 
         <!-- Spring Boot -->
         <dependency>
             <groupId>com.cengizhanyavuz.wordvault</groupId>
-            <artifactId>user</artifactId>
+            <artifactId>config</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.cengizhanyavuz.wordvault</groupId>
+            <artifactId>kafka-to-elastic</artifactId>
+            <version>${project.version}</version>
+
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -25,6 +39,10 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-validation</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -41,6 +59,7 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql-version}</version>
         </dependency>
 
         <!-- Lombok -->
@@ -48,6 +67,23 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <optional>true</optional>
+        </dependency>
+
+        <!-- Jwt -->
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-api</artifactId>
+            <version>${jwt.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-impl</artifactId>
+            <version>${jwt.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-jackson</artifactId>
+            <version>${jwt.version}</version>
         </dependency>
 
         <!-- WebSocket -->
@@ -60,22 +96,27 @@
         <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi</artifactId>
+            <version>5.2.0</version>
         </dependency>
         <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi-ooxml</artifactId>
+            <version>5.2.0</version>
         </dependency>
         <dependency>
             <groupId>org.jxls</groupId>
             <artifactId>jxls-jexcel</artifactId>
+            <version>1.0.9</version>
         </dependency>
         <dependency>
             <groupId>org.dhatim</groupId>
             <artifactId>fastexcel-reader</artifactId>
+            <version>0.15.3</version>
         </dependency>
         <dependency>
             <groupId>org.dhatim</groupId>
             <artifactId>fastexcel</artifactId>
+            <version>0.15.3</version>
         </dependency>
 
         <!-- Kafka -->

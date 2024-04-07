@@ -7,11 +7,12 @@ import com.cengizhanyavuz.wordvault.quiz.model.TestWord;
 import com.cengizhanyavuz.wordvault.quiz.repository.TestWordRepository;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.cengizhanyavuz.wordvault.main.constants.PointConstants.*;
+import static com.cengizhanyavuz.wordvault.config.PointConstants.*;
+
+
 @Service
 public class TestWordService {
 

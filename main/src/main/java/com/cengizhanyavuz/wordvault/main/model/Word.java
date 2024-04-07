@@ -7,7 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 
-import static com.cengizhanyavuz.wordvault.main.config.PointConstants.WORD_POINT;
+import static com.cengizhanyavuz.wordvault.config.PointConstants.WORD_POINT;
 
 @Data
 @Log4j2
