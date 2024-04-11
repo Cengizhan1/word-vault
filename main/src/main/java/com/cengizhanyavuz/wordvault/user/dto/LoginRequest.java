@@ -1,4 +1,4 @@
-package com.cengizhanyavuz.wordvault.main.dto.request;
+package com.cengizhanyavuz.wordvault.user.dto;
 
 public record LoginRequest(
         String username,

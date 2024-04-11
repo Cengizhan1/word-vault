@@ -1,4 +1,4 @@
-package com.cengizhanyavuz.wordvault.main;
+package com.cengizhanyavuz.wordvault;
 
 
 import org.springframework.boot.SpringApplication;

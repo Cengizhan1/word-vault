@@ -1,6 +1,6 @@
-package com.cengizhanyavuz.wordvault.main.service.auth;
+package com.cengizhanyavuz.wordvault.user.service;
 
-import com.cengizhanyavuz.wordvault.main.repository.TokenRepository;
+import com.cengizhanyavuz.wordvault.user.repository.TokenRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;

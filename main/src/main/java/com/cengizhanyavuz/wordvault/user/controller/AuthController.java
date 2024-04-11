@@ -1,9 +1,9 @@
-package com.cengizhanyavuz.wordvault.main.controller;
+package com.cengizhanyavuz.wordvault.user.controller;
 
-import com.cengizhanyavuz.wordvault.main.dto.request.LoginRequest;
-import com.cengizhanyavuz.wordvault.main.dto.request.RegisterRequest;
-import com.cengizhanyavuz.wordvault.main.dto.response.AuthenticationResponse;
-import com.cengizhanyavuz.wordvault.main.service.auth.AuthenticationService;
+import com.cengizhanyavuz.wordvault.user.dto.LoginRequest;
+import com.cengizhanyavuz.wordvault.user.dto.RegisterRequest;
+import com.cengizhanyavuz.wordvault.user.dto.AuthenticationResponse;
+import com.cengizhanyavuz.wordvault.user.service.AuthenticationService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;

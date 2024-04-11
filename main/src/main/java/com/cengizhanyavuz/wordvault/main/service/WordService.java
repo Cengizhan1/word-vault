@@ -8,7 +8,7 @@ import com.cengizhanyavuz.wordvault.main.exception.WordNotFoundException;
 import com.cengizhanyavuz.wordvault.main.exception.WorldAlreadyApprovedException;
 import com.cengizhanyavuz.wordvault.main.model.Word;
 import com.cengizhanyavuz.wordvault.main.repository.WordRepository;
-import com.cengizhanyavuz.wordvault.main.service.UserService;
+import com.cengizhanyavuz.wordvault.user.service.UserService;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 

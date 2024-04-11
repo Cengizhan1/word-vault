@@ -1,4 +1,4 @@
-package com.cengizhanyavuz.wordvault.main.dto.response;
+package com.cengizhanyavuz.wordvault.user.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;

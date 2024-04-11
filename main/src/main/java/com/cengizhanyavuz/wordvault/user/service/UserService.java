@@ -1,10 +1,10 @@
-package com.cengizhanyavuz.wordvault.main.service;
+package com.cengizhanyavuz.wordvault.user.service;
 
-import com.cengizhanyavuz.wordvault.main.dto.UserDto;
-import com.cengizhanyavuz.wordvault.main.dto.request.UserUpdateRequest;
+import com.cengizhanyavuz.wordvault.user.dto.UserDto;
+import com.cengizhanyavuz.wordvault.user.dto.UserUpdateRequest;
 import com.cengizhanyavuz.wordvault.main.exception.UsernameAlreadyExistsException;
-import com.cengizhanyavuz.wordvault.main.model.user.User;
-import com.cengizhanyavuz.wordvault.main.repository.UserRepository;
+import com.cengizhanyavuz.wordvault.user.model.User;
+import com.cengizhanyavuz.wordvault.user.repository.UserRepository;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;

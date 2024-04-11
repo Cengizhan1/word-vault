@@ -1,4 +1,4 @@
-package com.cengizhanyavuz.wordvault.main.model.user;
+package com.cengizhanyavuz.wordvault.user.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

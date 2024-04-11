@@ -1,14 +1,14 @@
-package com.cengizhanyavuz.wordvault.main.service.auth;
+package com.cengizhanyavuz.wordvault.user.service;
 
-import com.cengizhanyavuz.wordvault.main.dto.request.LoginRequest;
-import com.cengizhanyavuz.wordvault.main.dto.request.RegisterRequest;
-import com.cengizhanyavuz.wordvault.main.dto.response.AuthenticationResponse;
+import com.cengizhanyavuz.wordvault.user.dto.LoginRequest;
+import com.cengizhanyavuz.wordvault.user.dto.RegisterRequest;
+import com.cengizhanyavuz.wordvault.user.dto.AuthenticationResponse;
 import com.cengizhanyavuz.wordvault.main.exception.UsernameAlreadyExistsException;
-import com.cengizhanyavuz.wordvault.main.model.user.Role;
-import com.cengizhanyavuz.wordvault.main.model.user.Token;
-import com.cengizhanyavuz.wordvault.main.model.user.User;
-import com.cengizhanyavuz.wordvault.main.repository.TokenRepository;
-import com.cengizhanyavuz.wordvault.main.repository.UserRepository;
+import com.cengizhanyavuz.wordvault.user.model.Role;
+import com.cengizhanyavuz.wordvault.user.model.Token;
+import com.cengizhanyavuz.wordvault.user.model.User;
+import com.cengizhanyavuz.wordvault.user.repository.TokenRepository;
+import com.cengizhanyavuz.wordvault.user.repository.UserRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
