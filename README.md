@@ -1,5 +1,5 @@
 # WORD-VAULT
-![DB diagram tasarımı](assets/dbdiagram.jpg)
+![DB diagram tasarımı](assets/dbdiagram.png)
 [DB diagram text](assets/dbdiagram.txt)
 
 ## Technologies
